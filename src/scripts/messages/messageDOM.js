@@ -2,11 +2,13 @@
 
 const messageDOM = {
 
-    messageHTMLBuilder(userMessageArray, userId)  {
-        document.querySelector("").innerHTML = ''
+    messageHTMLBuilder(userMessageArray)  {
+        document.querySelector(".container__messages--saved").innerHTML = ''
         userMessageArray.forEach(message => {
-
+            console.log(message)
             
         });
     }
 }
+
+export default messageDOM
