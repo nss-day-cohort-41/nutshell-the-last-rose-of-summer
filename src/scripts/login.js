@@ -9,9 +9,8 @@ export default {
         //calls all users to compare username an password to login the correct individual
         API.getAllUsers()
             .then( users => users.find( user => {
-               
                 //compare all existing usernames and passwords to locate user
-                if (user.password === password && user.username === userName){
+                if (user.password === password && user.userName === userName){
                     session.storeUser(user.id)
                     console.log(user)
                     console.log(userName)
@@ -31,7 +30,7 @@ export default {
                     if (user.email === newUser.email) {
                         alert("That email is already in use.")
                         duplicateEmail = true;
-                    } else if (user.username === newUser.username) {
+                    } else if (user.userName === newUser.userName) {
                         alert("That username is already in use.")
                         duplicateUsername = true;
                     }

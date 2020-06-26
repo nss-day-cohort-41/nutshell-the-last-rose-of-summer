@@ -9,7 +9,6 @@ const listeners = {
 
             const userName = document.querySelector("#userName").value 
             const password = document.querySelector("#password").value
-            console.log(userName, password)
             login.login(userName, password)
 
         })
@@ -22,10 +21,10 @@ const listeners = {
 
             newUserObj.email = document.querySelector("#email").value
             newUserObj.userName = document.querySelector("#userName").value
-            newUserObj.password1 = document.querySelector("#password").value
-            newUserObj.password2 = document.querySelector("#password2").value
+            newUserObj.password = document.querySelector("#password").value
+            const password2 = document.querySelector("#password2").value
 
-            if(newUserObj.password1 !== newUserObj.password2) {
+            if(newUserObj.password !== password2) {
                 alert("Your password fields do not match.")
             } else {
                 login.signUp(newUserObj)
