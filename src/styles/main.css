@@ -226,7 +226,7 @@ input, select, button {
     flex-flow: column;
     background-size: cover;
     background-repeat: no-repeat;
-    /* background-image: url(../images/walnut-nut-harvest-nuts.png);  */
+    background-image: url(../images/walnut-nut-harvest-nuts.png); 
     margin: 0 auto 0 auto;
     width: 99%;
     height:10%;
