@@ -1,5 +1,6 @@
 html, body {
     height: 98%;
+    width: auto;
     margin: 0;
     font-family: 'Cuprum', Arial, Helvetica, sans-serif;
     background-color: #BC986A;
@@ -55,9 +56,9 @@ html, body {
     justify-content: space-between;
     /* background-color: antiquewhite; */
     background-color: #e6e3d9;
-    width: auto;
+    width: 99%;
     height:80%;
-    margin: 0 4px 4px 4px;
+    margin: 0 auto 4px auto;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -66,6 +67,20 @@ html, body {
     box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
 }
 
+img {
+    content: ""; 
+    position: absolute;
+    top: 12%;
+    bottom: auto;
+    width: 100%;
+    height: 100%;
+    opacity: .3;
+    z-index: 1;
+}
+
+.container__main > * {
+    z-index: 100;
+}
 .container__main > div {
     margin: 1vh 1vw;
 }
@@ -137,12 +152,18 @@ html, body {
     -moz-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
     -webkit-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
     box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    overflow: auto;
 }
 
+
+
 .container__main__middle--news {
+    display: flex;
+    flex-flow: column nowrap;
     flex: 7 0 0;
     margin: 5px 3px 5px 3px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    overflow: auto;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -153,8 +174,14 @@ html, body {
 }
 
 .container__main__middle--friends {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(160px, 1fr));
+    justify-content: space-evenly;
     flex: 4 0 0;
+    height: 100%;
+    width: auto;
     margin: 5px 3px 5px 3px;
+    overflow: auto;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -172,9 +199,17 @@ html, body {
     -moz-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
     -webkit-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
     box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    overflow: auto;
 
 }
 
+input, select, button {
+    background-color: #FBEEC1;
+    border-radius: 5px;
+    border: 1px solid #8D8741;
+    box-sizing: border-box;
+    box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
+  }
 
 .button {
     font-size: .7em;
@@ -185,17 +220,16 @@ html, body {
 
 }
 
-  .container__footer {
+.container__footer {
     display: flex;
     color: dimgrey;
     flex-flow: column;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url(../images/walnut-nut-harvest-nuts.png); 
-
+    /* background-image: url(../images/walnut-nut-harvest-nuts.png);  */
+    margin: 0 auto 0 auto;
     width: 99%;
     height:10%;
-    margin: 0 3px 3px 3px;
     padding: 0 .5em .5em .5em;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -207,3 +241,34 @@ html, body {
     box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
   }
 
+
+  .section__itemCard {
+    flex: 1 0 21%;
+    flex-basis: 21%;
+    font-size: .8em;
+    box-sizing: border-box;
+    box-shadow:0 2px 6px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
+    margin: 2px 2px 2px 2px;
+    border-radius: 5px;
+  }
+ 
+  .header__itemCard {
+   display: flex;
+   justify-content: ;
+    justify-content: space-between;
+   font-size: 1em;
+   font-weight: 600;
+   color:#201b22;
+   background-color:#FBEEC1;
+   margin: 0 2px;
+  }
+ 
+  .section__itemCard > p {
+   font-size: .8em;
+   padding:0.01em 3px;
+   margin: 2px 2px 2px 5px;
+  }
+
+  .header__itemCard button {
+      font-size: .8em;
+  }
