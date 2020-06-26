@@ -272,3 +272,7 @@ input, select, button {
   .header__itemCard button {
       font-size: .8em;
   }
+
+  .hidden {
+      display: none;
+}
