@@ -226,7 +226,7 @@ input, select, button {
     flex-flow: column;
     background-size: cover;
     background-repeat: no-repeat;
-    /* background-image: url(../images/walnut-nut-harvest-nuts.png);  */
+    background-image: url(../images/walnut-nut-harvest-nuts.png); 
     margin: 0 auto 0 auto;
     width: 99%;
     height:10%;
@@ -254,8 +254,7 @@ input, select, button {
  
   .header__itemCard {
    display: flex;
-   /* justify-content: ; */
-    justify-content: space-between;
+   justify-content: space-between;
    font-size: 1em;
    font-weight: 600;
    color:#201b22;
@@ -272,3 +271,7 @@ input, select, button {
   .header__itemCard button {
       font-size: .8em;
   }
+
+  .hidden {
+      display: none;
+}
