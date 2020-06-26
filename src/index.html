@@ -5,11 +5,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/main.css">
-    <title>Document</title>
+    <title>Nutshell Community Portal</title>
 </head>
-
 <body>
+    <header class="banner">
+        <h1 class="banner__header">Nutshell Community Portal</h1>
+    </header>
+    <main class="container__main">
+
+        <div class="container__main__left">
+               <div class="messages__header">
+                    Messages <button name="newMessage" class="button button__newMessage" id="buttonNewMessage">New
+                        Message</button>
+                    </div>
+                <div class="container__main__left--messages">
+                    Fields here
+                    <!-- fields here -->
+                </div>
+                <div class="container__messages--saved">
+                    Saved messages here
+                    <!-- Card HTML for Conversion  -->
+                </div>
+            
+        </div> <!-- End container main left -->
+
+        <div class="container__main__middle">
+            <div class="news__header">
+                News Articles <button name="newArticle" class="button button__newArticle" id="buttonNewArticle">New
+                    Article</button>
+                </div>
+            <div class="container__main__middle--news">
+                News
+            </div> <!-- End news container -->
+            <div class="friends__header">
+                Friends <button name="AddFriend" class="button button__addFriend" id="buttonAddFriend">Add Friends</button>
+                </div>
+            <div class="container__main__middle--friends">
+                Friends
+            </div> <!-- End friends container -->
+        </div> <!-- End middle container -->
+
+        <div class="container__main__right">
+            <div class="events__header">
+                Events <button name="newEvent" class="button button__newEvent" id="buttonNewArticle">New
+                    Event</button>
+                </div>
+            <div class="container__main__right--events">
+                
+            </div> <!-- End events container -->
+            <div class="tasks__header">
+                Tasks <button name="newTask" class="button button__newTask" id="buttonNewTask">New
+                    Task</button>
+                </div>
+            <div class="container__main__right--tasks">
+                Tasks
+            </div> <!-- End tasks container -->
+        </div> <!-- End middle container -->
+    </main>
+    <div class="container__footer">
+        <footer class="footer body__footer">
+        
+        </footer>
+    </div>
     <article id="container"></article>
 </body>
 

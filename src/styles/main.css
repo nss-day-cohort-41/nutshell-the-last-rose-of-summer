@@ -1,0 +1,209 @@
+html, body {
+    height: 98%;
+    margin: 0;
+    font-family: 'Cuprum', Arial, Helvetica, sans-serif;
+    background-color: #BC986A;
+  }
+/* 
+  green #8D8741
+  blue #659DBD
+  beige #DAAD86
+  dark beige #BC986A
+  toupe #FBEEC1 */
+
+  /*
+  beach blue #049DD9
+  lighter blue #04B2D9
+  */
+
+.banner  {
+    display: flex;
+    color: rgb(233, 222, 72);
+    text-shadow: 1px 1px #2d609b, 
+        2px 2px #97952c, 
+        3px 3px #6e6d13;
+        flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    overflow: hidden;
+    background-color: #000000;
+    background-image: url(../images/header_transparent.png); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 99%;
+    height:12%;
+    padding: .2em;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    -moz-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    -webkit-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    border-radius: 4px;
+    
+}
+
+.banner__header {
+    overflow: hidden;
+}
+
+.container__main {
+    display: flex;
+    color: dimgrey;
+    flex-direction: row;
+    justify-content: space-between;
+    /* background-color: antiquewhite; */
+    background-color: #e6e3d9;
+    width: auto;
+    height:80%;
+    margin: 0 4px 4px 4px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    -moz-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    -webkit-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+}
+
+.container__main > div {
+    margin: 1vh 1vw;
+}
+
+.container__main__middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 4 0 0;
+    width: 98%;
+    height: auto;
+    /* background-color: antiquewhite; */
+    margin-top: auto;
+    margin-bottom: auto;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    -moz-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    -webkit-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+}
+
+.container__main__left, .container__main__right {
+    flex: 2.5 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 98%;
+    height: auto;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -moz-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    -webkit-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+
+}
+.container__main__left > div {
+    margin: 1vh 1vw;
+}
+
+.messages__header, .news__header, .friends__header, .events__header, 
+.news__header, .tasks__header {
+    height: 1.1em;
+    display: flex;
+    justify-content: space-between;
+    margin: 1vh 1vw;
+    
+}
+
+.container__main__left--messages {
+    flex: 2 0 0;
+    margin: 5px 3px 5px 3px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -moz-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    -webkit-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+}
+
+
+.container__messages--saved {
+    flex: 6 0 0;
+    margin: 5px 3px 5px 3px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -moz-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    -webkit-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+}
+
+.container__main__middle--news {
+    flex: 7 0 0;
+    margin: 5px 3px 5px 3px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -moz-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    -webkit-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+
+}
+
+.container__main__middle--friends {
+    flex: 4 0 0;
+    margin: 5px 3px 5px 3px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -moz-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    -webkit-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+
+}
+
+.container__main__right--events, .container__main__right--tasks {
+    flex: 4 0 0;
+    margin: 5px 3px 5px 3px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -moz-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    -webkit-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+
+}
+
+
+.button {
+    font-size: .7em;
+    border-radius: 5px;
+    -moz-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    -webkit-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+
+}
+
+  .container__footer {
+    display: flex;
+    color: dimgrey;
+    flex-flow: column;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../images/walnut-nut-harvest-nuts.png); 
+
+    width: 99%;
+    height:10%;
+    margin: 0 3px 3px 3px;
+    padding: 0 .5em .5em .5em;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    justify-content: center;
+    background-color: "";
+    -moz-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    -webkit-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+  }
+
