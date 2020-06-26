@@ -7,10 +7,10 @@ const listeners = {
     login () {
         document.querySelector("#logInButton").addEventListener("click", event => {
 
-            const username = document.querySelector("#username").value 
+            const userName = document.querySelector("#userName").value 
             const password = document.querySelector("#password").value
-
-            login.login(username, password)
+            console.log(userName, password)
+            login.login(userName, password)
 
         })
     },
@@ -21,8 +21,8 @@ const listeners = {
             const newUserObj = {}
 
             newUserObj.email = document.querySelector("#email").value
-            newUserObj.username = document.querySelector("#username").value
-            newUserObj.password1 = document.querySelector("#password1").value
+            newUserObj.userName = document.querySelector("#userName").value
+            newUserObj.password1 = document.querySelector("#password").value
             newUserObj.password2 = document.querySelector("#password2").value
 
             if(newUserObj.password1 !== newUserObj.password2) {

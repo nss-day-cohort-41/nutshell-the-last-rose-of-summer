@@ -4,16 +4,17 @@ import session from "./sessionStorage.js"
 
 export default {
     
-    login (username, password) {
+    login (userName, password) {
 
         //calls all users to compare username an password to login the correct individual
         API.getAllUsers()
             .then( users => users.find( user => {
+               
                 //compare all existing usernames and passwords to locate user
-                if (user.password === password && user.username === username){
+                if (user.password === password && user.username === userName){
                     session.storeUser(user.id)
                     console.log(user)
-                    console.log(username)
+                    console.log(userName)
                     console.log(password)
                 }
             }))
