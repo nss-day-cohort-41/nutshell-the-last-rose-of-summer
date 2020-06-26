@@ -1,7 +1,7 @@
 import session from "./sessionStorage.js"
 import API from "./data.js"
+import listeners from "./eventListeners.js"
 
-session.storeUser(1)
+listeners.login()
+listeners.register()
 
-API.getUserData(1)       
-.then(user => console.log(user))
