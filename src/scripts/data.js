@@ -23,18 +23,24 @@ const API = {
         return fetch(`${jsonUrl}users/${userId}?_embed=friends&_embed=messages&_embed=articles&_embed=events&_embed=tasks`)
                 .then(response => response.json())
     },
-    // get messages for a single user //
-    getUserMessages (userId) {
-        return fetch(`${jsonUrl}users/${userId}?_embed=messages&_embed=friends`)
-        .then(response => response.json())
-    },
-
-    getFriendMessages (friendId) {
-        return fetch(`${jsonUrl}users/${friendId}?_embed=messages`)
-        .then(response => response.json())
-
+    // get all messages //
+    getAllUsersAndMessages () {
+        return fetch(`${jsonUrl}users?_embed=messages&_embed=friends`)
+            .then(response => response.json())
 
     }
+
+    // getUserMessages (userId) {
+    //     return fetch(`${jsonUrl}users/${userId}?_embed=messages&_embed=friends`)
+    //     .then(response => response.json())
+    // },
+
+    // getFriendMessages (friendId) {
+    //     return fetch(`${jsonUrl}users/${friendId}?_embed=messages`)
+    //     .then(response => response.json())
+
+
+    
 }
 
 

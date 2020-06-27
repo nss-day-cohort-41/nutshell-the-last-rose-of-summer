@@ -3,7 +3,7 @@ import messaging from "./messages/messages.js"
 
 import includeHTML from './portal.js'
 import { updateAllScrolls } from './events.js'
-import updateForm from './forms.js'
+// import updateForm from './forms.js'
 
 
 
@@ -22,7 +22,7 @@ if (!activeUser) {
 const messageContainer = document.querySelector(".container__messages--saved")
 updateAllScrolls();
 
-messaging.userMessageAquire(1)
+messaging.getAllMessages()
 
 // pass divContainer, htmlpage or var, type ("file", or "variable")
-updateForm()
+// updateForm()
