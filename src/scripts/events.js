@@ -20,9 +20,12 @@ const updateScroll = (divContainer,top) => {
     
 }
 
+
+// Sets index state for hiding form and displaying component sections
 const updatePortalLoggedIn = () => {
     document.querySelector(".container__main").classList.toggle("hidden");
     const main = document.querySelector(".container__form__login").classList.toggle("hidden");
+    // updates scroll areas to required positions, bottom for msgs, top for all others
     updateAllScrolls();
 
 }
