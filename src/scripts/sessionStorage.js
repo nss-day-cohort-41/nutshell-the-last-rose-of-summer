@@ -1,7 +1,8 @@
 
 export default {
-    storeUser (userId) {
+    storeUser (userId, userName) {
         sessionStorage.setItem('activeUser', userId )               
+        sessionStorage.setItem('activeUserName', userName )               
     },
     removeUser () {
         sessionStorage.removeItem('activeUser')

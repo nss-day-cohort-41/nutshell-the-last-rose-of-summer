@@ -39,7 +39,7 @@ export default {
                 //if username and email are unique, we move to the fetch call
                 if (duplicateEmail === false && duplicateUsername === false) {
                     API.saveUser(newUser)
-                        .then(user => session.storeUser(user.id))
+                        .then(user => session.storeUser(user.id, user.userName))
                         .then(console.log(sessionStorage))
                 }
             })

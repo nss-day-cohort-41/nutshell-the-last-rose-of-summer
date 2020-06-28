@@ -3,6 +3,7 @@ import messaging from "./messages/messages.js"
 
 import includeHTML from './portal.js'
 import { updateAllScrolls } from './events.js'
+import listeners from "./eventListeners.js"
 // import updateForm from './forms.js'
 
 
@@ -21,6 +22,9 @@ if (!activeUser) {
 //call to update scroll when message is added or edited
 const messageContainer = document.querySelector(".container__messages--saved")
 updateAllScrolls();
+
+
+listeners.enableAddItemListener ()
 
 messaging.getAllMessages()
 
