@@ -4,15 +4,16 @@ import listeners from "../eventListeners.js"
 import messaging from "./messages.js"
 import shared from "../miscSharedFunctions.js"
 // import API from "../data.js"
+let messages;
 const messageDOM = {
 
     messageHTMLBuilder(messageArray)  {
+        messages = messageArray
         messageDOM.clearMessageSection()
         let messageSectionHTML = ``
         messageArray.forEach(message => {
 
             //build current user message//
-            console.log(message.userId)
             if (message.userId == sessionStorage.activeUser) {
                let userHTML = messageDOM.buildCurrentUserMessage(message)
                messageSectionHTML += userHTML           
@@ -31,7 +32,7 @@ const messageDOM = {
         )
         
         document.querySelector(".container__messages--saved").innerHTML = messageSectionHTML;
-        listeners.enableEditButton(messageArray)
+        // listeners.enableEditButton(messageArray)
     },
     //User message HTML//
     buildCurrentUserMessage(message) {
@@ -87,10 +88,11 @@ const messageDOM = {
     listeners.enableMessageSave()
     },
     //Allow user to edit own message. Builds pre-populated fieldset in entry area//
-    messageEdit(messageArray) {
+    
+    messageEdit() {
        
             let idSelected = event.target.id.split("--")[1]
-            let editArray = messageArray.find(array => {
+            let editArray = messages.find(array => {
                 if (array.id == idSelected) {
                     return array
                 }

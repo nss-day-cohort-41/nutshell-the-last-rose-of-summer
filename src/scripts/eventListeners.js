@@ -45,7 +45,7 @@ const listeners = {
     // Get the value of the option chosen by the user
         document.querySelector(".select__box").addEventListener("change", clickEvent => {
            let userSelect = clickEvent.target.value
-            console.log(userSelect)
+
             if (userSelect === "event") {
                 //Invoke Add event functionality here
             }
@@ -75,11 +75,10 @@ const listeners = {
            }
         )
     },
-    enableEditButton(messageArray) {
+    enableEditButton() {
         document.querySelector(".container__messages--saved").addEventListener("click", event => {
-            console.log(event.target.id)
             if (event.target.id.split("--")[0] === "buttonMsg") {
-                messageDOM.messageEdit(messageArray)
+                messageDOM.messageEdit()
             }
             else if (event.target.id.split("--")[0] === "buttonAddMsg") {
                 //Place 'Add a friend' funtionality from message click here//

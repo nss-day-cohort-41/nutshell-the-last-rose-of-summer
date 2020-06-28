@@ -39,10 +39,6 @@ const messaging = {
     },
     //Builds message to send off to the API module for POST/PUT//
     buildMessageObject() {
-        let date = new Date()
-           date = date.toString()
-           date = date.slice(0,15)
-           console.log(date)
         let id = document.querySelector("#entryId").value
         let userId = document.querySelector("#userMessageId").value
         userId = parseInt(userId)
@@ -55,9 +51,7 @@ const messaging = {
         if (document.querySelector("#entryId").value === "") {
             API.PostNewMessage(messageObject)
             .then(() => {
-                // document.querySelector(".container__messages--saved").removeEventListener
                 messaging.getAllMessages()
-                // document.querySelector("#saveButton").removeEventListener
                 messageDOM.clearDataField()
                 document.querySelector(".select__box").value = 0
             })
@@ -65,9 +59,7 @@ const messaging = {
         else if (document.querySelector("#entryId").value !== "") {
             API.editExistingMessage (messageObject, id)
             .then(() => {
-                // document.querySelector(".container__messages--saved").removeEventListener
                 messaging.getAllMessages()
-                // document.querySelector("#updateButton").removeEventListener
                 messageDOM.clearDataField()
                 document.querySelector(".select__box").value = 0
             })

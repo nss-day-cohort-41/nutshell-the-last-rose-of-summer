@@ -25,6 +25,7 @@ updateAllScrolls();
 
 
 listeners.enableAddItemListener ()
+listeners.enableEditButton()
 
 messaging.getAllMessages()
 
