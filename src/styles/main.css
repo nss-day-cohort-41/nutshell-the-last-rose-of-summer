@@ -275,3 +275,11 @@ input, select, button {
   .hidden {
       display: none;
 }
+
+
+/* message edit field buttons*/
+
+#save_discard {
+    display: flex;
+    justify-content: space-evenly;
+}

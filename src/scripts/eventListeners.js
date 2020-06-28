@@ -1,5 +1,7 @@
 import login from "./login.js"
 
+import messageDOM from "./messages/messageDOM.js"
+
 const listeners = {
 
     // event listener object
@@ -29,6 +31,35 @@ const listeners = {
             } else {
                 login.signUp(newUserObj)
             }
+        })
+    },
+
+
+
+
+
+
+
+    //messages section event listeners
+    enableDiscardButton() {
+        document.querySelector("#discardButton").addEventListener("click", event => {
+            messageDOM.clearDataField()
+
+           }
+        )
+    },
+    enableEditButton(userMessageArray) {
+        document.querySelector(".container__messages--saved").addEventListener("click", event => {
+            messageDOM.messageEdit(userMessageArray)
+            }
+        )
+    },
+    enableMessageSave() {
+
+    },
+    enableMessageUpdate() {
+        document.querySelector("#saveButton").addEventListener("click", event => {
+            messageDOM.buildMessageObject()
         })
     }
 }

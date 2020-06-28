@@ -3,23 +3,27 @@ import messageDOM from "../messages/messageDOM.js"
 
 let friendMessage;
 let messageArray = [];
+
+
 const messaging = {
+//Get all user data including messages and friends//
     getAllMessages () {
         API.getAllUsersAndMessages()
         .then((response => {
             messaging.buildMessageArray(response)
         }))
     },
+//Build the array of all messages//
     buildMessageArray(allUserMessages) {
 
-        console.log(allUserMessages)
+    //searches messages for all friends of Current User//
         allUserMessages.forEach(user => {
             let friendOfUser = false
             user.friends.forEach(friend => {
                 if (friend.following === 2) {
                     friendOfUser = true
                 }
-
+    //builds the message array, adding user name and friend status to the array//
             })
             user.messages.forEach(message => {
                 message.userName = user.userName
@@ -28,9 +32,9 @@ const messaging = {
             })
 
         });
-
+    //Sort the array to show newest on the bottom of the list//
         messageArray.sort((a, b) => {return a.timeStamp-b.timeStamp})
-
+    //off to HTML DOMland
         messageDOM.messageHTMLBuilder(messageArray)
     }
 }
