@@ -1,4 +1,5 @@
 import login from "./login.js"
+import { updatePortalLoggedIn } from './events.js'
 
 const listeners = {
 
@@ -10,6 +11,8 @@ const listeners = {
             const userName = document.querySelector("#userName").value 
             const password = document.querySelector("#password").value
             login.login(userName, password)
+            updatePortalLoggedIn();
+
 
         })
     },
@@ -28,6 +31,7 @@ const listeners = {
                 alert("Your password fields do not match.")
             } else {
                 login.signUp(newUserObj)
+                updatePortalLoggedIn();
             }
         })
     }

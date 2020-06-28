@@ -20,6 +20,11 @@ const updateScroll = (divContainer,top) => {
     
 }
 
+const updatePortalLoggedIn = () => {
+    document.querySelector(".container__main").classList.toggle("hidden");
+    const main = document.querySelector(".container__form__login").classList.toggle("hidden");
+    updateAllScrolls();
 
+}
 
-export { updateAllScrolls };
+export { updateAllScrolls, updatePortalLoggedIn };
