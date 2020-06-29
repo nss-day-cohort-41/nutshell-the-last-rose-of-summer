@@ -1,5 +1,4 @@
 import login from "./login.js"
-import { updatePortalLoggedIn } from './events.js'
 
 const listeners = {
 
