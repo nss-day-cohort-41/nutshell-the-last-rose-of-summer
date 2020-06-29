@@ -6,5 +6,6 @@ export default {
     },
     removeUser () {
         sessionStorage.removeItem('activeUser')
+        sessionStorage.removeItem('activeUserName')
     }
 }

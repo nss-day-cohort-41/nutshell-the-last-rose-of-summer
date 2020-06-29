@@ -1,7 +1,7 @@
 import API from "./data.js"
 import messaging from "./messages/messages.js"
 
-import includeHTML from './portal.js'
+
 import { updateAllScrolls } from './events.js'
 // import updateForm from './forms.js'
 import listeners from "./eventListeners.js"
