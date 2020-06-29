@@ -2,6 +2,7 @@ html, body {
     height: 98%;
     width: auto;
     margin: 0;
+    padding: 0;
     font-family: 'Cuprum', Arial, Helvetica, sans-serif;
     background-color: #BC986A;
   }
@@ -49,12 +50,94 @@ html, body {
     overflow: hidden;
 }
 
+.container__form__login {
+    display: flex;
+    color: #e6e3d9;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    background-image: url(../images/field.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #e6e3d9;
+    width: 99%;
+    height:80%;
+    margin: 0 auto 4px auto;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    opacity: 1;
+
+}
+
+
+.container__form__frost {
+    display: flex;
+    flex-flow: column;
+    width: 40%;
+    align-self: center;
+    background: inherit;
+    width: 250px;
+    height: 350px;
+    position: absolute;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    
+
+}
+
+.container__form__frost:after{
+    content: '';
+    width: 300px;
+    height: 300px;
+    background: inherit; 
+    position: absolute;
+    left: -25px;
+    /* left position; */
+    right: 0;
+    top: -25px;  
+    /* top position  */
+    bottom: 0;
+    box-shadow: inset 0 0 0 200px rgba(255,255,255,0.05);
+    box-sizing: border-box;
+    -moz-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    -webkit-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    border-radius: 10px;
+    filter: url('#blur');
+    filter: blur(20px);
+    margin: 10px;
+    padding: 10px;
+}
+
+.div__form__login {
+    position: relative;
+    margin-top: 50px;
+    text-align: center;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.form__login {
+    border-radius: 10px;
+}
+
+
+.form__login__buttons {
+    display: flex;
+    flex-flow: row;
+    justify-items: center;
+    width: auto;
+    justify-content: space-around;
+    border-radius: 10px;
+}
+
 .container__main {
     display: flex;
     color: dimgrey;
     flex-direction: row;
     justify-content: space-between;
-    /* background-color: antiquewhite; */
     background-color: #e6e3d9;
     width: 99%;
     height:80%;
@@ -65,17 +148,6 @@ html, body {
     -moz-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
     -webkit-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
     box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
-}
-
-img {
-    content: ""; 
-    position: absolute;
-    top: 12%;
-    bottom: auto;
-    width: 100%;
-    height: 100%;
-    opacity: .3;
-    z-index: 1;
 }
 
 .container__main > * {
@@ -92,7 +164,6 @@ img {
     flex: 4 0 0;
     width: 98%;
     height: auto;
-    /* background-color: antiquewhite; */
     margin-top: auto;
     margin-bottom: auto;
     box-sizing: border-box;
