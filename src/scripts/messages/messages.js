@@ -1,3 +1,6 @@
+//Author => Patrick Murphy
+//This module handles the primary data flow for the messages section//
+
 import API from "../data.js"
 import messageDOM from "./messageDOM.js"
 
@@ -47,7 +50,6 @@ const messaging = {
             "message": document.querySelector("#message__Field").value,
             "date": new Date()
         }
-        // console.log(messageObject)
         if (document.querySelector("#entryId").value === "") {
             API.PostNewMessage(messageObject)
             .then(() => {
