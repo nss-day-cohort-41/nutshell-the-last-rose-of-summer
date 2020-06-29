@@ -10,10 +10,38 @@
     <script src="https://kit.fontawesome.com/87c551d281.js" crossorigin="anonymous"></script>
     <title>Nutshell Community Portal</title>
 </head>
-<body>
+<body class="body__nutshell__portal">
     <header class="banner">
         <h1 class="banner__header">Nutshell Community Portal</h1>
     </header>
+    <div class="container__form__login hidden">
+        <div class="container__form__frost">
+            <div class="div__form__login">
+                <form class="form__login">
+                    <fieldset>
+                        <label for="email">Email: </label>
+                        <input type="text" id="email">
+                    </fieldset>
+                    <fieldset>
+                        <label for="userName">Username: </label>
+                        <input type="text" id="userName">
+                    </fieldset>
+                    <fieldset>
+                        <label for="password">Password:</label>
+                        <input type="password" id="password">
+                    </fieldset>
+                    <fieldset>
+                        <label for="password2">Re-enter Password:</label>
+                        <input type="password" id="password2">
+                    </fieldset>
+                    <div class="form__login__buttons">
+                        <input type="button" id="registerButton" value="Register">
+                        <input type="button" id="logInButton" value="Sign In">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <main class="container__main" >
         <div class="container__main__left">
             <div class="messages__header">

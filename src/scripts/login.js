@@ -1,5 +1,6 @@
 import API from "./data.js"
 import session from "./sessionStorage.js"
+import { updatePortalLoggedIn } from './events.js'
 
 
 export default {
@@ -15,6 +16,7 @@ export default {
                     console.log(user)
                     console.log(userName)
                     console.log(password)
+                    updatePortalLoggedIn();
                 }
             }))
 
@@ -41,6 +43,7 @@ export default {
                     API.saveUser(newUser)
                         .then(user => session.storeUser(user.id, user.userName))
                         .then(console.log(sessionStorage))
+                        .then(updatePortalLoggedIn())
                 }
             })
 
