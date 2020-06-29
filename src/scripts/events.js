@@ -1,5 +1,5 @@
 import API from './data.js'
-import articleDOMConverter from './articleDOM.js'
+import articleDOMConverter from './articles/articleDOM.js'
 
 // Object of containers and true for scroll to top/false for bottom for Scroll functions
 // David Bruce

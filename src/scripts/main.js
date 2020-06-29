@@ -1,5 +1,6 @@
 import API from "./data.js"
 import messaging from "./messages/messages.js"
+import articleFunctions from './articles/articles.js'
 
 
 import { updateAllScrolls } from './events.js'
@@ -13,7 +14,7 @@ listeners.register()
 
 // if active user item not in session storage, set login form to show and hide components
 // David Bruce
-if (sessionStorage.getItem("activeUser") === null ) {
+if (sessionStorage.getItem("activeUser") !== null ) {
     document.querySelector(".container__main").classList.toggle("hidden")
     const main = document.querySelector(".container__form__login").classList.toggle("hidden")
 } 
@@ -37,3 +38,4 @@ messaging.getAllMessages()
 
 // pass divContainer, htmlpage or var, type ("file", or "variable")
 // updateForm()
+articleFunctions.getAllArticles();

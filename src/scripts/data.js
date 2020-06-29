@@ -52,8 +52,45 @@ const API = {
             },
             body: JSON.stringify(newMessageObj)
         });
+    },
+
+
+    //Article API Calls
+    addArticleEntry(articleObject) {
+        return fetch(`${jsonUrl}articles`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(articleObject)
+        }).then(response =>{
+            if (response.ok ) {
+                return response.json();
+            } else {
+                return Promise.reject({ status: response.status, statusText: response.statusText})
+            }
+        })
+     
+    },
+    deleteArticle(articleId) {
+        return fetch(`${jsonUrl}articles/${articleId}`, {
+            method: "DELETE" })
+                .then(response => {
+                    if (response.status === 500) {
+                        return response.json() // return the result of the inner promise, which is an error
+                        .then((json) => {
+                          const { message, stackTrace } = json;
+                          throw new ServerException(message, stackTrace);
+                        });
+                      } else {
+                        return response.json();
+                      }
+                })
+    },
+    getAllUsersAndArticles () {
+        return fetch(`${jsonUrl}users?_embed=articles&_embed=friends`)
+            .then(response => response.json())
     }
 }
-
 
 export default API

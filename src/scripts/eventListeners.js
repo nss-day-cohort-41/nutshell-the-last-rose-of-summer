@@ -5,6 +5,7 @@ import login from "./login.js"
 
 import messageDOM from "./messages/messageDOM.js"
 import messaging from "./messages/messages.js"
+import articleFunctions from './articles/articles.js'
 
 const listeners = {
 
@@ -68,7 +69,20 @@ const listeners = {
 
     },
 
-
+    // Articles Listerers
+    enableArticleDeleteButton() {
+        const newsContainer = document.querySelector(".container__main__middle--news")
+        
+        newsContainer.addEventListener("click", event => {
+                if (event.target.id.startsWith("button__article__delete")) {
+                    const articleId = event.target.id.split("--")[1]
+                    // console.log(`Delete me ${articleId}`)
+                    articleFunctions.articleDelete(articleId)
+                }
+            }
+        )
+    },
+    
 
     //messages section event listeners
     enableDiscardButton() {

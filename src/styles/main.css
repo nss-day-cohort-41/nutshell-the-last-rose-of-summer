@@ -157,6 +157,10 @@ html, body {
     margin: 1vh 1vw;
 }
 
+.section__friend {
+    font-style: italic;
+}
+
 .container__main__middle {
     display: flex;
     flex-direction: column;
