@@ -60,7 +60,6 @@ html, body {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    /* background-color: antiquewhite; */
     background-color: #e6e3d9;
     width: 99%;
     height:80%;
@@ -139,7 +138,6 @@ html, body {
     color: dimgrey;
     flex-direction: row;
     justify-content: space-between;
-    /* background-color: antiquewhite; */
     background-color: #e6e3d9;
     width: 99%;
     height:80%;
@@ -166,7 +164,6 @@ html, body {
     flex: 4 0 0;
     width: 98%;
     height: auto;
-    /* background-color: antiquewhite; */
     margin-top: auto;
     margin-bottom: auto;
     box-sizing: border-box;
