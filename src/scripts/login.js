@@ -11,7 +11,7 @@ export default {
             .then( users => users.find( user => {
                 //compare all existing usernames and passwords to locate user
                 if (user.password === password && user.userName === userName){
-                    session.storeUser(user.id)
+                    session.storeUser(user.id, user.userName)
                     console.log(user)
                     console.log(userName)
                     console.log(password)
