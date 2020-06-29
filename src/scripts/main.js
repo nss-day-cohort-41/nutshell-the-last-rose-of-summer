@@ -1,6 +1,6 @@
 import API from "./data.js"
 import messaging from "./messages/messages.js"
-
+import friends from "./friends/friends.js"
 
 import { updateAllScrolls } from './events.js'
 // import updateForm from './forms.js'
@@ -32,8 +32,9 @@ updateAllScrolls();
 
 listeners.enableAddItemListener ()
 listeners.enableEditButton()
+listeners.enableFriendDelete()
 
 messaging.getAllMessages()
-
+friends.getAllFriends()
 // pass divContainer, htmlpage or var, type ("file", or "variable")
 // updateForm()

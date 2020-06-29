@@ -5,6 +5,7 @@ import login from "./login.js"
 
 import messageDOM from "./messages/messageDOM.js"
 import messaging from "./messages/messages.js"
+import friends from "./friends/friends.js"
 
 const listeners = {
 
@@ -99,6 +100,16 @@ const listeners = {
     enableMessageUpdate() {
         document.querySelector("#updateButton").addEventListener("click", event => {
             messageDOM.buildMessageObject()
+        })
+    },
+    //Friends section event listeners
+    enableFriendDelete() {
+        document.querySelector(".container__main__middle--friends").addEventListener("click", event => {
+            if (event.target.id.split("--")[0] === "friendDelete") {
+                let friendToRemove = event.target.id.split("--")[1]
+                console.log(friendToRemove)
+            friends.friendRemove(friendToRemove)
+            }
         })
     }
 }

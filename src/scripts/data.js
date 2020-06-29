@@ -52,6 +52,17 @@ const API = {
             },
             body: JSON.stringify(newMessageObj)
         });
+    },
+//**All friend field related FETCH calls**// 
+
+    getAllUsersAndFriends () {
+    return fetch(`${jsonUrl}users?_embed=friends`)
+        .then(response => response.json())
+},
+    unfollow(id) {
+        return fetch(`${jsonUrl}friends/${id}`, {
+            method: "DELETE"
+        })
     }
 }
 
