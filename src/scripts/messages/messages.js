@@ -23,7 +23,7 @@ const messaging = {
         allUserMessages.forEach(user => {
             let friendOfUser = false
             user.friends.forEach(friend => {
-                if (friend.following === 2) {
+                if (friend.following == sessionStorage.userId) {
                     friendOfUser = true
                 }
     //builds the message array, adding user name and friend status to the array//
