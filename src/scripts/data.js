@@ -22,6 +22,36 @@ const API = {
     getUserData (userId) {
         return fetch(`${jsonUrl}users/${userId}?_embed=friends&_embed=messages&_embed=articles&_embed=events&_embed=tasks`)
                 .then(response => response.json())
+    },
+
+
+
+
+//**All message field related FETCH calls**//   
+    // get all messages //
+    getAllUsersAndMessages () {
+        return fetch(`${jsonUrl}users?_embed=messages&_embed=friends`)
+            .then(response => response.json())
+    },
+    // POST a new message//
+    PostNewMessage (newMessageObj) {
+        return fetch(`${jsonUrl}messages`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newMessageObj)
+        }).then(response => response.json())
+    },
+    //Update an existing message//
+    editExistingMessage (newMessageObj, id) {
+        return fetch(`${jsonUrl}messages/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newMessageObj)
+        });
     }
 }
 
