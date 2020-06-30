@@ -6,6 +6,8 @@ import shared from "./miscSharedFunctions.js"
 import messageDOM from "./messages/messageDOM.js"
 import messaging from "./messages/messages.js"
 import friends from "./friends/friends.js"
+import articleFunctions from './articles/articles.js'
+import eventFunctions from './events/events.js'
 
 const listeners = {
 
@@ -51,7 +53,7 @@ const listeners = {
            let userSelect = clickEvent.target.value
 
             if (userSelect === "event") {
-                //Invoke Add event functionality here
+                eventFunctions.addNewEventForm()
             }
             else if (userSelect === "friend") {
                 //Invoke Add friend functionality here
@@ -62,6 +64,7 @@ const listeners = {
             }
             else if (userSelect === "news") {
                 //Invoke Add news article functionality here
+                articleFunctions.addNewArticleForm()
             }
             else if (userSelect === "task") {
                 //Invoke Add task functionality here
@@ -70,7 +73,59 @@ const listeners = {
 
     },
 
+    // Articles Listerers
+    enableArticleDeleteButton() {
+        const newsContainer = document.querySelector(".container__main__middle--news")
+        
+        newsContainer.addEventListener("click", event => {
+                if (event.target.id.startsWith("button__article__delete")) {
+                    const articleId = event.target.id.split("--")[1]
+                    // console.log(`Delete me ${articleId}`)
+                    articleFunctions.articleDelete(articleId)
+                }
+            }
+        )
+    },
 
+    enableArticleDiscardButton() {
+        document.querySelector("#button__discard__article").addEventListener("click", event => {
+            shared.clearDataField()
+
+           }
+        )
+    },
+    enableArticleSave() {
+        document.querySelector("#button__save__article").addEventListener("click", event => {
+            articleFunctions.addArticleEntry();
+        })
+    },
+
+    // Events Listeners
+    enableEventDeleteButton() {
+        const eventsContainer = document.querySelector(".container__main__right--events")
+        
+        eventsContainer.addEventListener("click", event => {
+                if (event.target.id.startsWith("button__event__delete")) {
+                    const eventId = event.target.id.split("--")[1]
+                    // console.log(`Delete me ${eventId}`)
+                    eventFunctions.eventDelete(eventId)
+                }
+            }
+        )
+    },
+
+    enableEventDiscardButton() {
+        document.querySelector("#button__discard__event").addEventListener("click", event => {
+            shared.clearDataField()
+
+            }
+        )
+    },
+    enableEventSave() {
+        document.querySelector("#button__save__event").addEventListener("click", event => {
+            eventFunctions.addEventEntry();
+        })
+    },
 
     //messages section event listeners
     enableDiscardButton() {
@@ -122,16 +177,7 @@ const listeners = {
             friends.searchDatabase()
         })
     }
-    // enableSendFriendRequest() {
-    //     document.querySelector("#requestButton").addEventListener("click", event => {
-    //         friends.buildRequestObject()
-    //     })
-    // }
-    // enableAddFriend() {
-    //     document.querySelector("#requestButton").addEventListener("click", event => {
-    //                 friends.buildFriendsObject()
-    //     })
-    // }
+    
 }
 
 export default listeners

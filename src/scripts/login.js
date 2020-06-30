@@ -17,6 +17,7 @@ export default {
                     console.log(userName)
                     console.log(password)
                     updatePortalLoggedIn();
+
                 }
             }))
 

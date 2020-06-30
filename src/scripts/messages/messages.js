@@ -78,17 +78,6 @@ const messaging = {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     // userMessageAquire (userId) {
     //    API.getUserMessages(userId)
     //     .then((userData => {
