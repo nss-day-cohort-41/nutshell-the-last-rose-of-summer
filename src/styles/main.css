@@ -157,20 +157,34 @@ html, body {
     margin: 1vh 1vw;
 }
 
+img {
+    position: absolute;
+    width: 99%;
+    height: 77%;
+    border-radius: 10px;
+    opacity: 0.4;
+}
+
 .section__friend {
     font-style: italic;
     background-color: cornsilk;
+    
 }
 
 .container__main__middle {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-color: #e6e3d9;
+    color: rgb(5, 73, 10);
+    font-weight: 800;
+    font-style: oblique;
     flex: 4 0 0;
     width: 98%;
     height: auto;
     margin-top: auto;
     margin-bottom: auto;
+    /* background-color: #e6e3d9; */
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -186,6 +200,10 @@ html, body {
     justify-content: space-between;
     width: 98%;
     height: auto;
+    background-color: #e6e3d9;
+    color: rgb(5, 73, 10);
+    font-weight: 800;
+    font-style: oblique;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -210,6 +228,7 @@ html, body {
 .container__main__left--messages {
     flex: 2 0 0;
     margin: 5px 3px 5px 3px;
+    background-color: #e6e3d9;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -222,6 +241,10 @@ html, body {
 .container__messages--saved {
     flex: 6 0 0;
     margin: 5px 3px 5px 3px;
+    color: rgb(53, 93, 131);
+    font-weight: 400;
+    font-style: normal;
+    background-color: #e6e3d9;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -260,6 +283,9 @@ html, body {
     display: flex;
     flex-flow: column nowrap;
     flex: 7 0 0;
+    color: rgb(53, 93, 131);
+    font-weight: 400;
+    font-style: normal;
     margin: 5px 3px 5px 3px;
     margin-bottom: 5px;
     overflow: auto;
@@ -280,6 +306,10 @@ html, body {
     height: 100%;
     width: auto;
     margin: 5px 3px 5px 3px;
+    background-color: #e6e3d9;
+    color: rgb(53, 93, 131);
+    font-weight: 400;
+    font-style: normal;
     overflow: auto;
     box-sizing: border-box;
     border: 1px solid #ccc;
@@ -293,6 +323,10 @@ html, body {
 .container__main__right--events, .container__main__right--tasks {
     flex: 4 0 0;
     margin: 5px 3px 5px 3px;
+    background-color: #e6e3d9;
+    color: rgb(53, 93, 131);
+    font-weight: 400;
+    font-style: normal;
     border: 1px solid #ccc;
     border-radius: 4px;
     -moz-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
@@ -345,6 +379,7 @@ input, select, button {
     flex: 1 0 21%;
     flex-basis: 21%;
     font-size: .8em;
+    background-color: #e6e3d9;
     box-sizing: border-box;
     box-shadow:0 2px 6px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
     margin: 2px 2px 2px 2px;
