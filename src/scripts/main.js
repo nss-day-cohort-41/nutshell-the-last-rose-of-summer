@@ -1,16 +1,19 @@
-import messaging from "./messages/messages.js"
-import articleFunctions from './articles/articles.js'
-import { updateAllScrolls } from './events.js'
-import listeners from "./eventListeners.js"
+import messaging from "./messages/messages.js";
+import articleList from './articles/articleList.js';
+import eventList from './events/eventList.js';
+import { updateAllScrolls } from './events.js';
+import listeners from "./eventListeners.js";
 
-
+listeners.enableAddItemListener ()
+listeners.enableEditButton()
 
 listeners.login()
 listeners.register()
 const populateComponents = () => {
 
     messaging.getAllMessages();
-    articleFunctions.getAllArticles();
+    articleList.getAllArticles();
+    eventList.getAllEvents();
     updateAllScrolls()
     
 }
@@ -30,8 +33,10 @@ if (activeUserId !== null) {
 if (activeUserId !== null) {
     listeners.enableAddItemListener()
     listeners.enableEditButton()
+
     console.log(`Active ID ${activeUserId}`)
     populateComponents();
+    
 }
 
 
@@ -40,3 +45,5 @@ const messageContainer = document.querySelector(".container__messages--saved")
 
 
 export { populateComponents };
+
+

@@ -6,6 +6,7 @@ import login from "./login.js"
 import messageDOM from "./messages/messageDOM.js"
 import messaging from "./messages/messages.js"
 import articleFunctions from './articles/articles.js'
+import eventFunctions from './events/events.js'
 import shared from './miscSharedFunctions.js'
 import taskSelect from './tasks/taskForm.js'
 
@@ -53,7 +54,7 @@ const listeners = {
            let userSelect = clickEvent.target.value
 
             if (userSelect === "event") {
-                //Invoke Add event functionality here
+                eventFunctions.addNewEventForm()
             }
             else if (userSelect === "friend") {
                 //Invoke Add friend functionality here
@@ -86,8 +87,8 @@ const listeners = {
             }
         )
     },
-      //messages section event listeners
-     enableArticleDiscardButton() {
+
+    enableArticleDiscardButton() {
         document.querySelector("#button__discard__article").addEventListener("click", event => {
             shared.clearDataField()
 
@@ -99,7 +100,33 @@ const listeners = {
             articleFunctions.addArticleEntry();
         })
     },
-    
+
+    // Events Listeners
+    enableEventDeleteButton() {
+        const eventsContainer = document.querySelector(".container__main__right--events")
+        
+        eventsContainer.addEventListener("click", event => {
+                if (event.target.id.startsWith("button__event__delete")) {
+                    const eventId = event.target.id.split("--")[1]
+                    // console.log(`Delete me ${eventId}`)
+                    eventFunctions.eventDelete(eventId)
+                }
+            }
+        )
+    },
+
+    enableEventDiscardButton() {
+        document.querySelector("#button__discard__event").addEventListener("click", event => {
+            shared.clearDataField()
+
+            }
+        )
+    },
+    enableEventSave() {
+        document.querySelector("#button__save__event").addEventListener("click", event => {
+            eventFunctions.addEventEntry();
+        })
+    },
 
     //messages section event listeners
     enableDiscardButton() {

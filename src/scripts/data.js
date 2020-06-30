@@ -115,7 +115,52 @@ const API = {
             },
             body: JSON.stringify(taskObj)
         }).then(response => response.json())
-    }
+    },
+   //Event API Calls
+   addEventEntry (eventObject) {
+    return fetch(`${jsonUrl}events`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(eventObject)
+    }).then(response =>{
+        if (response.ok ) {
+            return response.json();
+        } else {
+            return Promise.reject({ status: response.status, statusText: response.statusText})
+        }
+    })
+ 
+    },
+    deleteEvent(eventId) {
+        return fetch(`${jsonUrl}events/${eventId}`, {
+            method: "DELETE" })
+                .then(response => {
+                    if (response.status === 500) {
+                        return response.json() // return the result of the inner promise, which is an error
+                        .then((json) => {
+                        const { message, stackTrace } = json;
+                        throw new ServerException(message, stackTrace);
+                        });
+                    } else {
+                        return response.json();
+                    }
+                })
+    },
+    getAllUsersAndEvents () {
+        return fetch(`${jsonUrl}users?_embed=events&_embed=friends`)
+            .then(response => {if (response.status === 500) {
+                return response.json() // return the result of the inner promise, which is an error
+                .then((json) => {
+                const { message, stackTrace } = json;
+                throw new ServerException(message, stackTrace);
+                });
+            } else {
+                return response.json();
+            }})
+}
+
 
 }
 
