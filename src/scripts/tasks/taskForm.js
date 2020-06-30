@@ -1,3 +1,5 @@
+import listeners from "../eventListeners.js"
+
 
 export default {
     insertTaskForm () {
@@ -20,7 +22,11 @@ export default {
     
         </section>
         `
-
+        // inserts HTML into DOM and activates listeners
         document.querySelector(".container__main__left--messages").innerHTML += taskSelect
+
+        listeners.discardNewTask()
+        listeners.saveNewTask()
+
     }
 }
