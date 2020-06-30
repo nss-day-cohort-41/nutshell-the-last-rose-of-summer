@@ -9,6 +9,7 @@ import articleFunctions from './articles/articles.js'
 import eventFunctions from './events/events.js'
 import shared from './miscSharedFunctions.js'
 import taskSelect from './tasks/taskForm.js'
+import taskItem from './tasks/tasks.js'
 
 const listeners = {
 
@@ -166,6 +167,11 @@ const listeners = {
             shared.clearDataField()
         })
 
+    },
+    saveNewTask () {
+        document.querySelector("#button__save--task").addEventListener("click", event => {
+            taskItem.newTaskGrabber()
+        })
     }
 }
 

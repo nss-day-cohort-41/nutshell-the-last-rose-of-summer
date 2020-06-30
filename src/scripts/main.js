@@ -4,8 +4,7 @@ import eventList from './events/eventList.js';
 import { updateAllScrolls } from './events.js';
 import listeners from "./eventListeners.js";
 
-listeners.enableAddItemListener ()
-listeners.enableEditButton()
+
 
 listeners.login()
 listeners.register()
