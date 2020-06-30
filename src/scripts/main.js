@@ -5,6 +5,13 @@ import listeners from "./eventListeners.js"
 
 
 
+
+
+
+
+
+
+
 listeners.login()
 listeners.register()
 const populateComponents = () => {
@@ -32,6 +39,7 @@ if (activeUserId !== null) {
     listeners.enableEditButton()
     console.log(`Active ID ${activeUserId}`)
     populateComponents();
+    
 }
 
 
@@ -40,3 +48,5 @@ const messageContainer = document.querySelector(".container__messages--saved")
 
 
 export { populateComponents };
+
+

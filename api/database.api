@@ -2,7 +2,7 @@
   users: [],
   friends: [],
   messages: [],
-  news: [],
+  articles: [],
   events: [],
   tasks: []
   
