@@ -1,8 +1,12 @@
 import listeners from "../eventListeners.js"
+import shared from "../miscSharedFunctions.js"
 
 
 export default {
     insertTaskForm () {
+
+        shared.clearDataField()
+
         const taskSelect = `
         <section id="section__itemCard" >
             <input type="hidden" id="field__task__userId" value="${sessionStorage.activeUser}"/>

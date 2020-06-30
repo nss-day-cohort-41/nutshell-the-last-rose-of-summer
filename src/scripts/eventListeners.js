@@ -11,6 +11,7 @@ import eventFunctions from './events/events.js'
 
 import taskSelect from './tasks/taskForm.js'
 import taskItem from './tasks/tasks.js'
+import API from "./data.js"
 
 const listeners = {
 
@@ -70,7 +71,6 @@ const listeners = {
                 articleFunctions.addNewArticleForm()
             }
             else if (userSelect === "task") {
-                console.log('task click')
                 taskSelect.insertTaskForm()
             }
         } )
@@ -173,8 +173,35 @@ const listeners = {
     saveNewTask () {
         document.querySelector("#button__save--task").addEventListener("click", event => {
             taskItem.newTaskGrabber()
+            shared.clearDataField()
         })
     },
+    generateUserTasks () {
+        taskItem.taskListGenerator()
+    },
+    deleteUserTask () {
+        document.querySelector(".container__main__right--tasks").addEventListener("click", event => {
+            if(event.target.id.startsWith("buttonTask__delete--")) {
+                // gets task id from delete button 
+                const deleteId = event.target.id.split("--")[1]
+
+                API.deleteTask(deleteId)
+                .then(taskItem.taskListGenerator)
+
+            }
+        })
+    },
+    isTaskComplete () {
+        document.querySelector("#taskComplete").addEventListener("change", event => {
+            if(event.targe.id.startsWith("taskComplete--")) {
+                const taskId = event.target.id.split("--")[1]
+
+                taskItem.renderTaskComplete(taskId)
+            }
+        })
+    },
+
+
     //Friends section event listeners
     enableFriendDelete() {
         document.querySelector(".container__main__middle--friends").addEventListener("click", event => {

@@ -36,7 +36,9 @@ if (activeUserId !== null) {
 if (activeUserId !== null) {
     listeners.enableAddItemListener()
     listeners.enableEditButton()
-
+    //initial task generation
+    listeners.generateUserTasks()
+    
     console.log(`Active ID ${activeUserId}`)
     populateComponents();
     
@@ -58,4 +60,5 @@ friends.getAllFriends()
 // updateForm()
 export { populateComponents };
 
-
+//task delete button
+listeners.deleteUserTask()

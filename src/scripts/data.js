@@ -115,6 +115,7 @@ const API = {
               }})
     },
 
+
     // all task related fetch calls 
     getAllUserTasks (userId) {
         return fetch(`${jsonUrl}users/${userId}?_embed=tasks`)
@@ -130,6 +131,18 @@ const API = {
             body: JSON.stringify(taskObj)
         }).then(response => response.json())
     },
+    deleteTask (taskId) {
+        return fetch(`${jsonUrl}tasks/${taskId}`, {
+            method: "DELETE"
+        }).then(response => response.json())
+
+    },
+    getSingleTask (taskId) {
+        return fetch(`${jsonUrl}tasks/${taskId}`)
+            .then(response => response.json())
+    },
+
+
    //Event API Calls
    addEventEntry (eventObject) {
     return fetch(`${jsonUrl}events`, {
