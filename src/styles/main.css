@@ -327,6 +327,8 @@ img::after {
 
 .container__main__middle--friends {
     display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 10vh 10vh 10vh; 
     grid-template-columns: repeat(auto-fill,minmax(160px, 1fr));
     justify-content: space-evenly;
     flex: 4 0 0;

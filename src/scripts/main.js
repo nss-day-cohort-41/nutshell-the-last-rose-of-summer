@@ -1,7 +1,5 @@
 import API from "./data.js"
 import friends from "./friends/friends.js"
-// import updateForm from './forms.js'
-// import { updatePortalLoggedIn, updateComponents } from "./events.js"
 import messaging from "./messages/messages.js";
 import articleList from './articles/articleList.js';
 import eventList from './events/eventList.js';
