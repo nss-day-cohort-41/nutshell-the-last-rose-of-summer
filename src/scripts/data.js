@@ -30,6 +30,7 @@ const API = {
 //**All message field related FETCH calls**//   
     // get all messages //
     getAllUsersAndMessages () {
+        
         return fetch(`${jsonUrl}users?_embed=messages&_embed=friends`)
             .then(response => response.json())
     },
@@ -89,7 +90,15 @@ const API = {
     },
     getAllUsersAndArticles () {
         return fetch(`${jsonUrl}users?_embed=articles&_embed=friends`)
-            .then(response => response.json())
+            .then(response => {if (response.status === 500) {
+                return response.json() // return the result of the inner promise, which is an error
+                .then((json) => {
+                  const { message, stackTrace } = json;
+                  throw new ServerException(message, stackTrace);
+                });
+              } else {
+                return response.json();
+              }})
     }
 }
 

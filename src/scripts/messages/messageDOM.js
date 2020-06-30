@@ -122,15 +122,10 @@ const messageDOM = {
     buildMessageObject() {
         messaging.buildMessageObject()
     
-    },
+    }
 
-    //Discard changes to message button listener
-    clearDataField() {
-        document.querySelector(".container__main__left--messages").innerHTML = ``
-        document.querySelector(".select__box").value = 0
-    },
-    
-
+   
+   
 }
 
 export default messageDOM

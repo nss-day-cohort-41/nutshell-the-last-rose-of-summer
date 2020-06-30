@@ -1,10 +1,13 @@
 // Articles JS
+// David Bruce
 import API from './../data.js'
 import renderArticles from './articleDOM.js'
 import listeners from './../eventListeners.js'
+import shared from './../miscSharedFunctions.js'
 
 
 let articleArray = [];
+
 const articleSection = document.querySelector(".container__main__middle--news");
 
 const articleFormHTML = (articleOperation) => {
@@ -18,17 +21,17 @@ const articleFormHTML = (articleOperation) => {
         <section class="section__itemCard">
             <input type="hidden" id="field__articleId" value=""/>
             <input type="hidden" id="field__article__userId" value="${sessionStorage.activeUser}"/>
-            <p class="header__itemCard">${sessionStorage.activeUserName} </p>
+            <p class="header__itemCard"></p>
             <fieldset class="fieldset__article__title">
                 <label for="article__title">News Article</label>
                 <input type="text" class="field__text" id="field__article__title" name="article__title"></input>  
             </fieldset>
             <fieldset class="fieldset__article__synopsis">
-                <label for="article__synopsis">News Article</label>
+                <label for="article__synopsis">Synopsis</label>
                 <input type="text" class="field__text" id="field__article__synopsis" name="article__synopsis"></input>  
             </fieldset>
             <fieldset class="fieldset__article__url">
-                <label for="article__url">News Article</label>
+                <label for="article__url">URL</label>
                 <input type="text" class="field__text" id="field__article__url" name="article__url"></input>  
             </fieldset>
             <div id="save_discard">
@@ -42,10 +45,12 @@ const articleFormHTML = (articleOperation) => {
 
 const articleFunctions = {
 
-    addArticleEntry (articleObject) {
+    addArticleEntry () {
+        const articleObject = articleFunctions.saveArticle("save")
         API.addArticleEntry(articleObject)
             .then((response) => {
-                renderArticles(response);
+                shared.clearDataField();
+                articleFunctions.getAllArticles();
             })
     },
     
@@ -54,7 +59,7 @@ const articleFunctions = {
          .then((articleFunctions.getAllArticles()))
     },
 
-    articleSave () {
+    addNewArticleForm () {
         document.querySelector(".container__main__left--messages").innerHTML = articleFormHTML("save")
     listeners.enableArticleDiscardButton()
     listeners.enableArticleSave()
@@ -67,17 +72,18 @@ const articleFunctions = {
         if (articleOperation === "edit") { 
             articleId = document.getElementById("field__article__articleId").value;
         }
-        const articleUserId = document.getElementById("field__article__userId").value; 
+        const articleUserId = parseInt(sessionStorage.getItem("activeUser")); 
         const articleTitle = document.getElementById("field__article__title").value;
         const articleSynopsis = document.getElementById("field__article__synopsis").value;
         const articleUrl = document.getElementById("field__article__url").value;
         const articleTimestamp = new Date();
 
-        const articleObject = createArticle( articleTitle, articleSynopsis, articleUrl, articleTimestamp );
+        const articleObject = articleFunctions.createArticleObject( articleUserId,articleTitle, articleSynopsis, articleUrl, articleTimestamp );
+        return articleObject;
     }, 
 
     // Create new article object and return it
-    createArticle ( articleUserId, articleTitle, articleSynopsis, articleUrl, articleTimestamp ) {
+    createArticleObject ( articleUserId, articleTitle, articleSynopsis, articleUrl, articleTimestamp ) {
         return {
             userId: articleUserId,
             title: articleTitle,
@@ -87,62 +93,61 @@ const articleFunctions = {
         }
     }, 
 
-    //Get all user data including messages and friends//
+    //Get users, friends, and articles and build array
     getAllArticles () {
+        articleSection.innerHTML="";
         API.getAllUsersAndArticles()
         .then((response => {
-            // console.log(response)
             articleFunctions.buildArticleArray(response)
         }))
     },
-    //Build the array of all messages//
+    //Build article array
     buildArticleArray(allUserArticles) {
         articleArray = []
-    //searches messages for all friends of Current User//
+    //Find friends and set object key value
         allUserArticles.forEach(user => {
             let friendOfUser = false
             user.friends.forEach(friend => {
                 if (friend.following == sessionStorage.activeUser) {
                     friendOfUser = true
                 }
-    //builds the message array, adding user name and friend status to the array//
+    // Builds article array with users and friends
             })
             user.articles.forEach(article => {
                 article.userName = user.userName
                 article.friendOfUser = friendOfUser
                 if ( article.friendOfUser = true || article.userId === sessionStorage.activeUser) {
-                    console.log(article)
                     articleArray.push(article)
                 }
                 
             })
 
         });
-    //Sort the array to show newest on the bottom of the list//
+    // Sorts for newest article to go to top of list
         articleArray.sort((a, b) => {
                 if (a.timestamp > b.timestamp) return -1;
                 if (a.timestamp < b.timestamp) return 1;
                 return 0;
         })
-    //off to HTML DOMland
-    
+    // Add to DOM
         articleFunctions.articleDOMConverter(articleArray)
     }, 
+
     articleDOMConverter(articleArray)  {
         const articles = articleArray
         let articleSectionHTML = ""
         articleSection.innerHTML = ""  
         articleArray.forEach(article => {
 
-            //build current user message//
+            // Add active user article and adjust class for no italics
             if (article.userId == sessionStorage.activeUser) {
                 renderArticles(article)
-            //    articleSectionHTML += userHTML           
+                document.querySelector(`.article--${article.id}`).classList.remove("section__friend")
             }
-            //build current user's friends messages//
+            // Add following friends articles and adjust class for italics and cornsilk background
             else if (article.friendOfUser === true ) {
                 renderArticles(article)
-            //    articleSectionHTML += friendHTML
+                document.querySelector(`.article--${article.id}`).classList.toggle("section__friend")
             }                
             listeners.enableArticleDeleteButton();
         })

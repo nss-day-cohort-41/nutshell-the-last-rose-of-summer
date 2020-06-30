@@ -1,5 +1,4 @@
-import API from './data.js'
-import articleDOMConverter from './articles/articleDOM.js'
+import { populateComponents } from './main.js'
 
 // Object of containers and true for scroll to top/false for bottom for Scroll functions
 // David Bruce
@@ -28,30 +27,11 @@ const updatePortalLoggedIn = () => {
     document.querySelector(".container__main").classList.toggle("hidden");
     const main = document.querySelector(".container__form__login").classList.toggle("hidden");
     // updates scroll areas to required positions, bottom for msgs, top for all others
+    populateComponents();
     updateAllScrolls();
 
 }
 
-//Update Index upon login with all component item objects (friend list, messages, articles, events, tasks)
-// David Bruce
-const updateComponents = (userId) => {
-        API.getUserData(userId)
-        .then((userObject => {
-            const componentTables = [ "friends", "messages", "articles", "events", "tasks" ];
-            componentTables.forEach((componentSection => {
-                console.log(`Table: ${componentSection}`)
-                userObject[componentSection].forEach((componentItem => {
-                    if (componentSection === "articles" ) {
-                        // call to list function -> domconverter ..
-                        articleDOMConverter(componentItem)
-                    }
-                   }))
-            }))
-            
-        }))
-    
-    
-}
 
-export { updateAllScrolls, updateComponents, updatePortalLoggedIn };
+export { updateAllScrolls, updatePortalLoggedIn };
 
