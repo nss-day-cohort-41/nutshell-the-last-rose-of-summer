@@ -7,6 +7,7 @@ import articleList from './articles/articleList.js';
 import eventList from './events/eventList.js';
 import { updateAllScrolls } from './events.js';
 import listeners from "./eventListeners.js";
+import test from "./tasks/tasks.js"
 
 
 listeners.login()
@@ -60,5 +61,9 @@ friends.getAllFriends()
 // updateForm()
 export { populateComponents };
 
-//task delete button
+//task delete and complete listeners
 listeners.deleteUserTask()
+listeners.isTaskComplete()
+
+
+test.daysRemaining()

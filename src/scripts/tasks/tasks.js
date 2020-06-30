@@ -1,5 +1,4 @@
 import API from "../data.js"
-import listeners from "../eventListeners.js"
 import taskDom from "./taskDOM.js"
 
 
@@ -36,8 +35,19 @@ export default {
 
     renderTaskComplete (taskId) {
         API.getSingleTask(taskId)
-            .then(task => task.complete = true)
+            .then(task => {
+                task.complete = true
+                return task
+            }).then(task => API.completeUserTask(task))
             .then(this.taskListGenerator)
+    },
+
+    daysRemaining () {
+        let newTime = Date()
+        let oldTime = Date()
+
+        let time = newTime - oldTime
+        console.log("Time math!", time)
     }
 
 }

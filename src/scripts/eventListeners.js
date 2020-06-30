@@ -192,8 +192,11 @@ const listeners = {
         })
     },
     isTaskComplete () {
-        document.querySelector("#taskComplete").addEventListener("change", event => {
-            if(event.targe.id.startsWith("taskComplete--")) {
+        document.querySelector(".container__main__right--tasks").addEventListener("change", event => {
+            
+            // gets task id from checkbox
+            if(event.target.id.startsWith("taskComplete--")) {
+
                 const taskId = event.target.id.split("--")[1]
 
                 taskItem.renderTaskComplete(taskId)

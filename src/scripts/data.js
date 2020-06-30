@@ -141,6 +141,15 @@ const API = {
         return fetch(`${jsonUrl}tasks/${taskId}`)
             .then(response => response.json())
     },
+    completeUserTask (completedTaskObj) {
+        return fetch(`${jsonUrl}tasks/${completedTaskObj.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(completedTaskObj)
+        }).then(response => response.json())
+    },
 
 
    //Event API Calls
