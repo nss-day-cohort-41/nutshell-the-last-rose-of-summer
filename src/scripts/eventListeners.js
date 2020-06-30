@@ -5,6 +5,8 @@ import login from "./login.js"
 
 import messageDOM from "./messages/messageDOM.js"
 import messaging from "./messages/messages.js"
+import articleFunctions from './articles/articles.js'
+import shared from './miscSharedFunctions.js'
 
 const listeners = {
 
@@ -60,6 +62,7 @@ const listeners = {
             }
             else if (userSelect === "news") {
                 //Invoke Add news article functionality here
+                articleFunctions.addNewArticleForm()
             }
             else if (userSelect === "task") {
                 //Invoke Add task functionality here
@@ -68,12 +71,38 @@ const listeners = {
 
     },
 
+    // Articles Listerers
+    enableArticleDeleteButton() {
+        const newsContainer = document.querySelector(".container__main__middle--news")
+        
+        newsContainer.addEventListener("click", event => {
+                if (event.target.id.startsWith("button__article__delete")) {
+                    const articleId = event.target.id.split("--")[1]
+                    // console.log(`Delete me ${articleId}`)
+                    articleFunctions.articleDelete(articleId)
+                }
+            }
+        )
+    },
+      //messages section event listeners
+     enableArticleDiscardButton() {
+        document.querySelector("#button__discard__article").addEventListener("click", event => {
+            shared.clearDataField()
 
+           }
+        )
+    },
+    enableArticleSave() {
+        document.querySelector("#button__save__article").addEventListener("click", event => {
+            articleFunctions.addArticleEntry();
+        })
+    },
+    
 
     //messages section event listeners
     enableDiscardButton() {
         document.querySelector("#discardButton").addEventListener("click", event => {
-            messageDOM.clearDataField()
+            shared.clearDataField()
 
            }
         )
