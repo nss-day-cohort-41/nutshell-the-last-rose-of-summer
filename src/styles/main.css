@@ -300,9 +300,9 @@ img::after {
 	background-image: -webkit-gradient(linear,
 									   40% 0%,
 									   75% 84%,
-									   from(#9cdd5f),
-									   to(#85af21),
-									   color-stop(.6,#cfd666))
+									   from(#95ABC7),
+									   to(#879180),
+									   color-stop(.6,#d68066))
 }
 
 
@@ -440,9 +440,22 @@ input, select, button {
     display: flex;
     justify-content: space-between;
     font-size: 2em;
-    font-weight: 600;
+    font-weight: 400;
     color:#201b22;
     background-color:#FBEEC1;
+    margin: 0 2px;
+   }
+
+   .section__nextEvent {
+       font-weight: 700;
+       background-color: #e0d8c8;
+   }
+
+   .header__itemCard.section__nextEvent {
+    display: flex;
+    justify-content: space-between;
+    color:#201b22;
+    background-color:#95ABC7;
     margin: 0 2px;
    }
 

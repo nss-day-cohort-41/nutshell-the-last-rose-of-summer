@@ -3,6 +3,7 @@
 import API from './../data.js'
 import listeners from './../eventListeners.js'
 import shared from './../miscSharedFunctions.js'
+import articleList from './articleList.js'
 
 
 // Article Form
@@ -47,13 +48,13 @@ const articleFunctions = {
         API.addArticleEntry(articleObject)
             .then((response) => {
                 shared.clearDataField();
-                articleFunctions.getAllArticles();
+                articleList.getAllArticles();
             })
     },
     
     articleDelete (articleId) {
       API.deleteArticle(articleId) 
-         .then((articleFunctions.getAllArticles()))
+         .then((articleList.getAllArticles()))
     },
 
     addNewArticleForm () {
