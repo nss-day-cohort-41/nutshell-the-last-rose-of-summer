@@ -2,12 +2,13 @@
 //  This module defines all the event listeners and their actions relating to Nutshell//
 
 import login from "./login.js"
-
+import shared from "./miscSharedFunctions.js"
 import messageDOM from "./messages/messageDOM.js"
 import messaging from "./messages/messages.js"
+import friends from "./friends/friends.js"
 import articleFunctions from './articles/articles.js'
 import eventFunctions from './events/events.js'
-import shared from './miscSharedFunctions.js'
+
 import taskSelect from './tasks/taskForm.js'
 import taskItem from './tasks/tasks.js'
 
@@ -59,6 +60,7 @@ const listeners = {
             }
             else if (userSelect === "friend") {
                 //Invoke Add friend functionality here
+                friends.search()
             }
             else if (userSelect === "message") {
                 messaging.createNewMessage()
@@ -138,13 +140,13 @@ const listeners = {
         )
     },
     enableEditButton() {
-        document.querySelector(".container__messages--saved").addEventListener("click", event => {
+        document.querySelector(".container__main__left").addEventListener("click", event => {
             if (event.target.id.split("--")[0] === "buttonMsg") {
                 messageDOM.messageEdit()
             }
             else if (event.target.id.split("--")[0] === "buttonAddMsg") {
                 //Place 'Add a friend' funtionality from message click here//
-                console.log("Won't you be my neighbor?")
+                friends.buildFriendsObject()
             }
             
             }
@@ -172,7 +174,27 @@ const listeners = {
         document.querySelector("#button__save--task").addEventListener("click", event => {
             taskItem.newTaskGrabber()
         })
+    },
+    //Friends section event listeners
+    enableFriendDelete() {
+        document.querySelector(".container__main__middle--friends").addEventListener("click", event => {
+            if (event.target.id.split("--")[0] === "friendDelete") {
+                let friendToRemove = event.target.id.split("--")[1]
+                friends.friendRemove(friendToRemove)
+            }
+        })
+    },
+    enableFollowUser() {
+        document.querySelector("#followButton").addEventListener("click", event => {
+                friends.buildFriendsObjectFromSearch()
+        })
+    },
+    enableFriendSearch() {
+        document.querySelector("#userSearch").addEventListener("keypress", event => {
+            friends.searchDatabase()
+        })
     }
+    
 }
 
 export default listeners

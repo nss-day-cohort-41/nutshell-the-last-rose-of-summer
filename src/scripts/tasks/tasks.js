@@ -13,6 +13,8 @@ export default {
         newTaskObj.completionDate = document.getElementById("task__date").value
         newTaskObj.complete = false
 
+        newTaskObj.userId = parseInt(newTaskObj.userId, 10)
+
         API.saveNewTask(newTaskObj)
             .then(this.taskListGenerator())
 
