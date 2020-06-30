@@ -3,7 +3,7 @@ This module's purpose is to build the DOM elements for the friends section of Nu
 import miscSharedFunctions from "../miscSharedFunctions.js"
 import listeners from "../eventListeners.js"
 
-let friendsListHTML = ``
+// let friendsListHTML = ``
 
 const friendsDOM = {
 
@@ -33,6 +33,17 @@ const friendsDOM = {
             </section>`
             listeners.enableDiscardButton()
             listeners.enableFriendSearch()
+    },
+    insertSearchResult(searchDisplayArray) {
+        let searchFoundHTML = ``
+        document.querySelector("#foundUser").innerHTML = ``
+        searchDisplayArray.forEach(toDisplay => {
+            let displayHTML = `
+            <p class="header__itemCard">${toDisplay.userName} <button class="fas fa-user-plus" id="buttonAddMsg--${toDisplay.id}"></button></p>
+            `
+            searchFoundHTML += displayHTML
+        })
+        document.querySelector("#foundUser").innerHTML = searchFoundHTML
     }
     //***for future functionality*** Friend Request*/
 //     buildRequestField(requestTo) {

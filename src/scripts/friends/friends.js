@@ -4,9 +4,12 @@
 import API from "../data.js"
 import friendsDOM from "./friendsDOM.js"
 import messaging from "../messages/messages.js"
+import shared from "../miscSharedFunctions.js"
 
 let friendsArray = []
 let userArray = []
+let foundArray = []
+let searchDisplayArray = []
 const friends = {
     
     getAllFriends () {
@@ -18,6 +21,7 @@ const friends = {
     },
     buildFriendsArray() {
         friendsArray = []
+
         //locate active user in data array
         let activeUser = userArray.find(array => {
             return (array.userName === sessionStorage.activeUserName)
@@ -64,42 +68,43 @@ const friends = {
 
     },
     searchDatabase() {
-        let foundArray = []
+        foundArray = []
         let querry = document.querySelector("#userSearch").value
         document.querySelector("#foundUser").innerHTML = ``
+        if (querry.length > 0) {
         userArray.forEach(user => {
-            if (user.userName.includes(querry)) {
+            if (user.userName.toLowerCase().includes(querry.toLowerCase())) {
                 foundArray.push(user)
-            }
-            console.log(foundArray)
-        })
-    },
-    buildFriendsObjectFromSearch() {
-        let followingId = event.target.id.split("--")[1]
-        followingId = parseInt(followingId)
-        let user = sessionStorage.activeUser
-        user = parseInt(user)
-        let friendObj = {
-            "userId": user,
-            "following": followingId,
-            "date": new Date()
-        }
-        let followNameArray = userArray.find(user => {
-            if (followingId === user.id) {
-                return user
-            }
-        })
-        let addFriend = confirm(`Are you sure you wish to follow ${followNameArray.userName}`)
-        if (addFriend === true) {
+            } 
             
-            API.follow(friendObj)
-            .then(() => {
-                document.querySelector(".container__main__middle--friends").innerHTML = ``
-                friends.getAllFriends()
-                messaging.getAllMessages()
-            })
+            
+        })
+       friends.filterArray(foundArray)
         }
     },
+    //filters the search results to remove current friends and primary user//
+    filterArray(rawSearchArray) {
+        searchDisplayArray = []
+        rawSearchArray.forEach(result => {
+            //Check to make sure result is not user//
+            if (result.id != sessionStorage.activeUser) {
+                //Check current friends//
+                let friendNow = false
+                friendsArray.forEach(friend => {
+                    if(result.id === friend.friendId) {
+                        friendNow = true
+                    }
+            }
+            )
+                        if (friendNow === false) {
+                        searchDisplayArray.push(result)
+                        }
+            }
+            
+    })
+        friendsDOM.insertSearchResult(searchDisplayArray)
+    },
+
     buildFriendsObject() {
         let followingId = event.target.id.split("--")[1]
         followingId = parseInt(followingId)
@@ -121,8 +126,21 @@ const friends = {
             API.follow(friendObj)
             .then(() => {
                 document.querySelector(".container__main__middle--friends").innerHTML = ``
+                
                 friends.getAllFriends()
-                messaging.getAllMessages()
+                messaging.getAllMessages();
+                if (searchDisplayArray.length > 1) {
+                  let newsearchDisplayArray = searchDisplayArray.filter(array =>{
+                        if (array.id !== followNameArray.id) {
+                            return array
+                        }
+
+                    })
+                    searchDisplayArray = newsearchDisplayArray
+                    // document.querySelector("#foundUser").innerHTML = ``
+                    friendsDOM.insertSearchResult(searchDisplayArray)
+                }
+                else shared.clearDataField()
             })
         }
     }

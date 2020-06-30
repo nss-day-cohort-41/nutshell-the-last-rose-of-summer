@@ -81,13 +81,12 @@ const listeners = {
         )
     },
     enableEditButton() {
-        document.querySelector(".container__messages--saved").addEventListener("click", event => {
+        document.querySelector(".container__main__left").addEventListener("click", event => {
             if (event.target.id.split("--")[0] === "buttonMsg") {
                 messageDOM.messageEdit()
             }
             else if (event.target.id.split("--")[0] === "buttonAddMsg") {
                 //Place 'Add a friend' funtionality from message click here//
-                console.log(event)
                 friends.buildFriendsObject()
             }
             
@@ -109,8 +108,7 @@ const listeners = {
         document.querySelector(".container__main__middle--friends").addEventListener("click", event => {
             if (event.target.id.split("--")[0] === "friendDelete") {
                 let friendToRemove = event.target.id.split("--")[1]
-                console.log(friendToRemove)
-            friends.friendRemove(friendToRemove)
+                friends.friendRemove(friendToRemove)
             }
         })
     },
