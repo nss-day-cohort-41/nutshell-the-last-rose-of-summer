@@ -1,7 +1,7 @@
 //HTML DOM building for News Articles 
 //David Bruce
 
-//Adds html to 
+//Adds html to DOM
 const renderArticles = (article) => {
     const articleSection = document.querySelector(".container__main__middle--news").innerHTML += 
     `<section class="section__itemCard article--${article.id}">
