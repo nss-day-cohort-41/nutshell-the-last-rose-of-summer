@@ -51,7 +51,7 @@ position:relative;
   left:0;
     -webkit-backface-visibility: hidden;
     -webkit-transform: translateZ(0); backface-visibility: hidden;
-  scale(1.0, 1.0);
+  scale:(1.0, 1.0);
     transform: translateZ(0);
   background:#1B2030 url(../images/header_farmtotable.jpg) 50% 0 no-repeat;
   background-size:100%;

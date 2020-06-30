@@ -54,15 +54,29 @@ const API = {
             body: JSON.stringify(newMessageObj)
         });
     },
+//**All friend field related FETCH calls**// 
 
-
-    //Article API Calls
-    addArticleEntry(articleObject) {
-        return fetch(`${jsonUrl}articles`, {
-            method: "POST",
+    getAllUsersAndFriends () {
+    return fetch(`${jsonUrl}users?_embed=friends`)
+        .then(response => response.json())
+},
+    unfollow(id) {
+        return fetch(`${jsonUrl}friends/${id}`, {
+            method: "DELETE"
+        })
+    },
+    follow (followObj) {
+        return fetch(`${jsonUrl}friends`, {
+           method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
+            body: JSON.stringify(followObj)
+        }).then(response => response.json())
+    },
+        //Article API Calls
+    addArticleEntry(articleObject) {
+        return fetch(`${jsonUrl}articles`, {
             body: JSON.stringify(articleObject)
         }).then(response =>{
             if (response.ok ) {
