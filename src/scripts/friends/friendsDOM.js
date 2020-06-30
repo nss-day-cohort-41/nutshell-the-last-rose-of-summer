@@ -15,9 +15,34 @@ const friendsDOM = {
            friendsListHTML += thisFriendHTML           
         });
         document.querySelector(".container__main__middle--friends").innerHTML = friendsListHTML
-    console.log(friendsArray)
+    // console.log(friendsArray)
     
-    }
+    },
+    //***for future functionality*** Friend Request*/
+//     buildRequestField(requestTo) {
+      
+            
+
+//             document.querySelector(".container__main__left--messages").innerHTML = `
+//             <section class="section__itemCard">
+//             <input type="hidden" id="possibleFriend" value="${requestTo.id}"/>
+//             <input type="hidden" id="userId" value="${sessionStorage.activeUser}"/>
+//             <p class="header__itemCard">${sessionStorage.activeUserName}</p>
+//             <fieldset class="entry-point">
+//                 <label for="message">Message to ${requestTo.userName}</label>
+//                 <textarea class="field" id="message__Field" name="message" rows="6" cols="30"></textarea>  
+//             </fieldset>
+//             <div id="save_discard">
+//                 <input type="button" value="Send request" id="requestButton"></input>
+//                 <input type="button" value="Discard Changes" id="discardButton"></input>
+//             </div>
+// </section>`
+
+//             listeners.enableDiscardButton()
+//             listeners.enableSendFriendRequest()
+        
+    
+//     }
 
 }
 

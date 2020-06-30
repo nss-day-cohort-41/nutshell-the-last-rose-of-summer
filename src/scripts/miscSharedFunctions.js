@@ -9,6 +9,12 @@ const shared = {
         date = date.split("-")
         return date = `${date[1]}-${date[2]}-${date[0]}`
     },
+
+//Discard changes made to the data field section
+    clearDataField() {
+        document.querySelector(".container__main__left--messages").innerHTML = ``
+        document.querySelector(".select__box").value = 0
+        }
 }
 
 

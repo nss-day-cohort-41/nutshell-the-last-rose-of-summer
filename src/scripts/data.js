@@ -63,6 +63,15 @@ const API = {
         return fetch(`${jsonUrl}friends/${id}`, {
             method: "DELETE"
         })
+    },
+    follow (followObj) {
+        return fetch(`${jsonUrl}friends`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(followObj)
+        }).then(response => response.json())
     }
 }
 

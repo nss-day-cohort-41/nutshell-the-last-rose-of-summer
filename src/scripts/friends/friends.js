@@ -3,6 +3,7 @@
 
 import API from "../data.js"
 import friendsDOM from "./friendsDOM.js"
+import messaging from "../messages/messages.js"
 
 let friendsArray = []
 let userArray = []
@@ -25,7 +26,7 @@ const friends = {
         activeUser.friends.forEach(friend => {
             friends.findFriend(friend)
         });
-        console.log(friendsArray)
+        // console.log(friendsArray)
         friendsDOM.buildFriendList(friendsArray)
     },
     friendRemove(deleteId) {
@@ -40,6 +41,7 @@ const friends = {
             .then(() => {
                 document.querySelector(".container__main__middle--friends").innerHTML = ``
                 friends.getAllFriends()
+                messaging.getAllMessages()
             })
         }
     },
@@ -57,23 +59,63 @@ const friends = {
                 friendsArray.push(friendObj)
             }
         })
+    },
+    buildFriendsObject() {
+        let followingId = event.target.id.split("--")[1]
+        followingId = parseInt(followingId)
+        let user = sessionStorage.activeUser
+        user = parseInt(user)
+        let friendObj = {
+            "userId": user,
+            "following": followingId,
+            "date": new Date()
+        }
+        let followNameArray = userArray.find(user => {
+            if (followingId === user.id) {
+                return user
+            }
+        })
+        let addFriend = confirm(`Are you sure you wish to follow ${followNameArray.userName}`)
+        if (addFriend === true) {
+            
+            API.follow(friendObj)
+            .then(() => {
+                document.querySelector(".container__main__middle--friends").innerHTML = ``
+                friends.getAllFriends()
+                messaging.getAllMessages()
+            })
+        }
     }
-}
-//iterate the user data to build the array of active user's friends and their information//
 
-// const findFriend = (friend) => {
-//     userArray.forEach(user => {
-//         if (user.id === friend.following) {
-//             let friendObj = {
-//                 "jsonReferenceId": friend.id,
-//                 "friendName": user.userName,
-//                 "friendEmail": user.email,
-//                 "friendId": user.id,
-//                 "isFriend": true,
-//                 "friendsSince": friend.date
-//             }
-//             friendsArray.push(friendObj)
-//         }
-//     })
-// }
+
+    //Future funtionality//
+
+    // friendRequest() {
+    //     let idSelected = event.target.id.split("--")[1]
+    //     let requestTo = userArray.find(array => {
+    //         if (array.id == idSelected) {
+    //             return array
+    //         }
+    //     })
+    //     console.log(requestTo)
+    //     friendsDOM.buildRequestField(requestTo)
+    // },
+
+
+    
+    // buildRequestObject() {
+    //     let id = document.querySelector("#entryId").value
+    //     let requestUserId = document.querySelector("#userMessageId").value
+    //     requestUserId = parseInt(requestUserId)
+    //     let requestObject = {
+    //         "requestFromUserId": sessionStorage.activeUser,
+    //         "requestFromUserName": sessionStorage.activeUserName,
+    //         "requestToUserId": requestUserId,
+    //         "message": document.querySelector("#message__Field").value,
+    //         "date": new Date()
+    //     }
+    // }
+    
+}
+
 export default friends

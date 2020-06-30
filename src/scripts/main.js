@@ -34,6 +34,7 @@ listeners.enableAddItemListener ()
 listeners.enableEditButton()
 listeners.enableFriendDelete()
 
+
 messaging.getAllMessages()
 friends.getAllFriends()
 // pass divContainer, htmlpage or var, type ("file", or "variable")

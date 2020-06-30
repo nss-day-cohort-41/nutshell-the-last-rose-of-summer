@@ -3,7 +3,7 @@
 
 import API from "../data.js"
 import messageDOM from "./messageDOM.js"
-
+import shared from "../miscSharedFunctions.js"
 let messageArray = [];
 
 
@@ -19,25 +19,31 @@ const messaging = {
 //Build the array of all messages//
     buildMessageArray(allUserMessages) {
         messageArray = []
+        let activeUser = allUserMessages.find(array => {
+            return (array.userName === sessionStorage.activeUserName)
+        })
     //searches messages for all friends of Current User//
+    console.log(allUserMessages)
+    console.log(activeUser)
         allUserMessages.forEach(user => {
-            let friendOfUser = false
-            user.friends.forEach(friend => {
-                if (friend.following == sessionStorage.activeUser) {
-                    friendOfUser = true
+            let userFollowing = false
+            
+            activeUser.friends.forEach(friend => {
+                if (friend.following == user.id) {
+                    userFollowing = true
                 }
     //builds the message array, adding user name and friend status to the array//
             })
-            user.messages.forEach(message => {
+                user.messages.forEach(message => {
                 message.userName = user.userName
-                message.friendOfUser = friendOfUser
+                message.friendOfUser = userFollowing
                 messageArray.push(message)
             })
-
         });
     //Sort the array to show newest on the bottom of the list//
         messageArray.sort((a, b) => {return new Date(a.date) - new Date(b.date)})
     //off to HTML DOMland
+    console.log(messageArray)
         messageDOM.messageHTMLBuilder(messageArray)
     },
     //Builds message to send off to the API module for POST/PUT//
@@ -54,7 +60,7 @@ const messaging = {
             API.PostNewMessage(messageObject)
             .then(() => {
                 messaging.getAllMessages()
-                messageDOM.clearDataField()
+                shared.clearDataField()
                 document.querySelector(".select__box").value = 0
             })
         }
@@ -62,7 +68,7 @@ const messaging = {
             API.editExistingMessage (messageObject, id)
             .then(() => {
                 messaging.getAllMessages()
-                messageDOM.clearDataField()
+                shared.clearDataField()
                 document.querySelector(".select__box").value = 0
             })
         }

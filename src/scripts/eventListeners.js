@@ -2,7 +2,7 @@
 //  This module defines all the event listeners and their actions relating to Nutshell//
 
 import login from "./login.js"
-
+import shared from "./miscSharedFunctions.js"
 import messageDOM from "./messages/messageDOM.js"
 import messaging from "./messages/messages.js"
 import friends from "./friends/friends.js"
@@ -74,7 +74,7 @@ const listeners = {
     //messages section event listeners
     enableDiscardButton() {
         document.querySelector("#discardButton").addEventListener("click", event => {
-            messageDOM.clearDataField()
+            shared.clearDataField()
 
            }
         )
@@ -86,7 +86,8 @@ const listeners = {
             }
             else if (event.target.id.split("--")[0] === "buttonAddMsg") {
                 //Place 'Add a friend' funtionality from message click here//
-                console.log("Won't you be my neighbor?")
+                console.log(event)
+                friends.buildFriendsObject()
             }
             
             }
@@ -111,7 +112,17 @@ const listeners = {
             friends.friendRemove(friendToRemove)
             }
         })
-    }
+    },
+    // enableSendFriendRequest() {
+    //     document.querySelector("#requestButton").addEventListener("click", event => {
+    //         friends.buildRequestObject()
+    //     })
+    // }
+    // enableAddFriend() {
+    //     document.querySelector("#requestButton").addEventListener("click", event => {
+    //                 friends.buildFriendsObject()
+    //     })
+    // }
 }
 
 export default listeners
