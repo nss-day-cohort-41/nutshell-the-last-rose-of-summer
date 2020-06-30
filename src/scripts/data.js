@@ -99,7 +99,24 @@ const API = {
               } else {
                 return response.json();
               }})
+    },
+
+    // all task related fetch calls 
+    getAllUserTasks (userId) {
+        return fetch(`${jsonUrl}users/${userId}?_embed=tasks`)
+            .then(response => response.json())
+    },
+
+    saveNewTask (taskObj) {
+        return fetch(`${jsonUrl}tasks`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(taskObj)
+        }).then(response => response.json())
     }
+
 }
 
 export default API

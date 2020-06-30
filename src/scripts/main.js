@@ -28,7 +28,7 @@ if (activeUserId !== null) {
 
 
 if (activeUserId !== null) {
-    listeners.enableAddItemListener ()
+    listeners.enableAddItemListener()
     listeners.enableEditButton()
     console.log(`Active ID ${activeUserId}`)
     populateComponents();

@@ -7,6 +7,7 @@ import messageDOM from "./messages/messageDOM.js"
 import messaging from "./messages/messages.js"
 import articleFunctions from './articles/articles.js'
 import shared from './miscSharedFunctions.js'
+import taskSelect from './tasks/taskForm.js'
 
 const listeners = {
 
@@ -65,7 +66,8 @@ const listeners = {
                 articleFunctions.addNewArticleForm()
             }
             else if (userSelect === "task") {
-                //Invoke Add task functionality here
+                console.log('task click')
+                taskSelect.insertTaskForm()
             }
         } )
 
@@ -129,6 +131,14 @@ const listeners = {
         document.querySelector("#updateButton").addEventListener("click", event => {
             messageDOM.buildMessageObject()
         })
+    },
+
+    // task section event listeners 
+    discardNewTask () {
+        document.querySelector("#button__discard--task").addEventListener("click", event => {
+            shared.clearDataField()
+        })
+
     }
 }
 
