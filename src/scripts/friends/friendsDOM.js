@@ -1,7 +1,7 @@
 /*Author => Patrick Murphy
 This module's purpose is to build the DOM elements for the friends section of Nutshell*/
 import miscSharedFunctions from "../miscSharedFunctions.js"
-// import eventListeners from "../eventListeners.js"
+import listeners from "../eventListeners.js"
 
 let friendsListHTML = ``
 
@@ -15,9 +15,25 @@ const friendsDOM = {
            friendsListHTML += thisFriendHTML           
         });
         document.querySelector(".container__main__middle--friends").innerHTML = friendsListHTML
-    // console.log(friendsArray)
-    
     },
+    buildSearchFields() {
+        document.querySelector(".container__main__left--messages").innerHTML = `
+            <section class="section__itemCard">
+                <p class="header__itemCard">${sessionStorage.activeUserName}</p>
+                <fieldset class="entry-point">
+                    <label for="userSearch">Search for users:</label>
+                    <input type="search" id="userSearch" name="userSearch">
+                </fieldset>
+                <section class="section__itemCard" id="foundUser">
+                    
+                </section>
+                <div id="save_discard">
+                    <input type="button" value="Discard Changes" id="discardButton"></input>
+                </div>
+            </section>`
+            listeners.enableDiscardButton()
+            listeners.enableFriendSearch()
+    }
     //***for future functionality*** Friend Request*/
 //     buildRequestField(requestTo) {
       
@@ -58,3 +74,7 @@ const friendElementHTML = (friend) => {
     return elementHTML
 }
 export default friendsDOM
+
+
+/* <p class="header__itemCard">${message.userName} <button class="fas fa-user-plus" id="buttonAddMsg--${message.userId}"></button></p>
+                    <p><strong>${message.message}</strong> </p> */

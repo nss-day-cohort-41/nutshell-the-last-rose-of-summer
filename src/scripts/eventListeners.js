@@ -55,6 +55,7 @@ const listeners = {
             }
             else if (userSelect === "friend") {
                 //Invoke Add friend functionality here
+                friends.search()
             }
             else if (userSelect === "message") {
                 messaging.createNewMessage()
@@ -113,6 +114,16 @@ const listeners = {
             }
         })
     },
+    enableFollowUser() {
+        document.querySelector("#followButton").addEventListener("click", event => {
+                friends.buildFriendsObjectFromSearch()
+        })
+    },
+    enableFriendSearch() {
+        document.querySelector("#userSearch").addEventListener("keypress", event => {
+            friends.searchDatabase()
+        })
+    }
     // enableSendFriendRequest() {
     //     document.querySelector("#requestButton").addEventListener("click", event => {
     //         friends.buildRequestObject()

@@ -26,11 +26,9 @@ const friends = {
         activeUser.friends.forEach(friend => {
             friends.findFriend(friend)
         });
-        // console.log(friendsArray)
         friendsDOM.buildFriendList(friendsArray)
     },
     friendRemove(deleteId) {
-        console.log(friendsArray)
         let friendToDelete = friendsArray.find(unFriend => {
             return (unFriend.friendId == deleteId)
         })
@@ -59,6 +57,48 @@ const friends = {
                 friendsArray.push(friendObj)
             }
         })
+    },
+    //Search user array for a specific person to follow//
+    search() {
+        friendsDOM.buildSearchFields()
+
+    },
+    searchDatabase() {
+        let foundArray = []
+        let querry = document.querySelector("#userSearch").value
+        document.querySelector("#foundUser").innerHTML = ``
+        userArray.forEach(user => {
+            if (user.userName.includes(querry)) {
+                foundArray.push(user)
+            }
+            console.log(foundArray)
+        })
+    },
+    buildFriendsObjectFromSearch() {
+        let followingId = event.target.id.split("--")[1]
+        followingId = parseInt(followingId)
+        let user = sessionStorage.activeUser
+        user = parseInt(user)
+        let friendObj = {
+            "userId": user,
+            "following": followingId,
+            "date": new Date()
+        }
+        let followNameArray = userArray.find(user => {
+            if (followingId === user.id) {
+                return user
+            }
+        })
+        let addFriend = confirm(`Are you sure you wish to follow ${followNameArray.userName}`)
+        if (addFriend === true) {
+            
+            API.follow(friendObj)
+            .then(() => {
+                document.querySelector(".container__main__middle--friends").innerHTML = ``
+                friends.getAllFriends()
+                messaging.getAllMessages()
+            })
+        }
     },
     buildFriendsObject() {
         let followingId = event.target.id.split("--")[1]

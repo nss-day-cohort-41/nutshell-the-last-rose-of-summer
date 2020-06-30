@@ -23,8 +23,6 @@ const messaging = {
             return (array.userName === sessionStorage.activeUserName)
         })
     //searches messages for all friends of Current User//
-    console.log(allUserMessages)
-    console.log(activeUser)
         allUserMessages.forEach(user => {
             let userFollowing = false
             
@@ -43,7 +41,6 @@ const messaging = {
     //Sort the array to show newest on the bottom of the list//
         messageArray.sort((a, b) => {return new Date(a.date) - new Date(b.date)})
     //off to HTML DOMland
-    console.log(messageArray)
         messageDOM.messageHTMLBuilder(messageArray)
     },
     //Builds message to send off to the API module for POST/PUT//
