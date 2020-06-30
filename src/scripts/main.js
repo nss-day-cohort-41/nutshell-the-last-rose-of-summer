@@ -9,7 +9,8 @@ import listeners from "./eventListeners.js"
 
 
 
-
+listeners.enableAddItemListener ()
+listeners.enableEditButton()
 
 
 listeners.login()
@@ -35,8 +36,7 @@ if (activeUserId !== null) {
 
 
 if (activeUserId !== null) {
-    listeners.enableAddItemListener ()
-    listeners.enableEditButton()
+
     console.log(`Active ID ${activeUserId}`)
     populateComponents();
     
