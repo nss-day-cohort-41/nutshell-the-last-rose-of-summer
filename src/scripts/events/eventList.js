@@ -29,7 +29,6 @@ const eventList = {
         
         activeUserObj = allUserEvents.find(user => user.id === activeUserId)
         activeUserObj.friends.forEach((friend => {
-            console.log(friend.following)
             friendArray.push(friend.following)}))
 
     //Find friends and set object key value

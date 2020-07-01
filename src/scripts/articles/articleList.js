@@ -28,7 +28,7 @@ const articleList = {
 
         activeUserObj = allUserArticles.find(user => user.id === activeUserId)
         activeUserObj.friends.forEach((friend => {
-            console.log(friend.following)
+         
             friendArray.push(friend.following)}))
         
 
