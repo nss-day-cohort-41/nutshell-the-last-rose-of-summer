@@ -3,7 +3,7 @@ import friends from "./friends/friends.js"
 import messaging from "./messages/messages.js";
 import articleList from './articles/articleList.js';
 import eventList from './events/eventList.js';
-import { updateAllScrolls } from './events.js';
+import { updateAllScrolls, userWelcome } from './events.js';
 import listeners from "./eventListeners.js";
 
 // listeners.enableAddItemListener ()
@@ -13,6 +13,7 @@ listeners.login()
 listeners.register()
 const populateComponents = () => {
 
+    userWelcome();
     messaging.getAllMessages();
     articleList.getAllArticles();
     eventList.getAllEvents();
