@@ -28,12 +28,6 @@ const API = {
 
 
 //**All message field related FETCH calls**//   
-    // get all messages //
-    // getAllUsersAndMessages () {
-        
-    //     return fetch(`${jsonUrl}users?_embed=messages&_embed=friends`)
-    //         .then(response => response.json())
-    // },
     getAllMessages() {
         
         return fetch(`${jsonUrl}messages?_expand=user`)

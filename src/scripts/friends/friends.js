@@ -11,19 +11,16 @@ let userArray = []
 let foundArray = []
 let searchDisplayArray = []
 const friends = {
-    //Get friend information by expanding on the users friend json//
+    //Get friend information by expanding on the users friend.json//
     getPrimaryUserAndFriends() {
         API.getFriendData(sessionStorage.activeUser)
         .then((response) => {
-            // messaging.recieveFriends(response)
             friends.buildFriendsArray(response)
-
         })        
     },
-    
     buildFriendsArray(friends) {
         friendsArray = []
-    //build an array out of the friend data
+    //build an easily handled array out of the friend data
         friends.forEach(friend => {
                 let friendObj = {
                     "jsonReferenceId": friend.id,
@@ -45,6 +42,7 @@ const friends = {
         })
         let unfollow = confirm(`Are you sure you wish to unfollow ${friendToDelete.friendName}`)
         if (unfollow === true) {
+            //JSON DELETE//
             let id = friendToDelete.jsonReferenceId
             API.unfollow(id)
             .then(() => {
@@ -62,13 +60,10 @@ const friends = {
     searchDatabase() {
         foundArray = []
         let querry = document.querySelector("#userSearch").value
-        document.querySelector("#foundUser").innerHTML = ``
-        console.log(querry)
         //waits for 3 letters to be entered before starting querry process//
         if (querry.length > 1) {
             API.searchForUser(querry)
             .then((result) => {
-                console.log(result)
                 friends.filterArray(result)
             })     
         }
@@ -85,7 +80,7 @@ const friends = {
                     if(result.id === friend.friendId) {
                         friendNow = true
                     }
-            }
+                }
             )
                         if (friendNow === false) {
                         searchDisplayArray.push(result)
@@ -95,7 +90,7 @@ const friends = {
     })
         friendsDOM.insertSearchResult(searchDisplayArray)
     },
-
+    //build the friend object to send to JSON
     buildFriendsObject() {
         let followingId = event.target.id.split("--")[1]
         followingId = parseInt(followingId)
@@ -109,14 +104,14 @@ const friends = {
 
         let addFriend = confirm(`Are you sure you wish to follow ${event.target.value}`)
         if (addFriend === true) {
-            
+            //JSON POST FRIEND//
             API.follow(friendObj)
             .then(() => {
                 document.querySelector(".container__main__middle--friends").innerHTML = ``
                 
                 friends.getPrimaryUserAndFriends()
                 messaging.getAllMessages();
-                console.log(searchDisplayArray)
+                //Check to see if there are addional search results before clearing the fields//
                 if (searchDisplayArray.length > 1) {
                   let newsearchDisplayArray = searchDisplayArray.filter(array =>{
                         if (array.id !== friendObj.userId) {
@@ -132,10 +127,6 @@ const friends = {
             })
         }
     },
-    // handOffFriendsArray() {
-
-    //     return friendsArray
-    // }  
 }
 
 export default friends

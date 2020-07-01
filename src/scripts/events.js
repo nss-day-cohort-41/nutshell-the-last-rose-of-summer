@@ -2,7 +2,7 @@ import { populateComponents } from './main.js'
 
 // Object of containers and true for scroll to top/false for bottom for Scroll functions
 // David Bruce
-const scrollContainers = { messageContainer:[".container__messages--saved",false] , newsContainer:[".container__main__middle--news",true] , friendsContainer:[".container__main__middle--friends",true] , eventsContainer:[".container__main__right--events",true] , tasksContainer:[".container__main__right--tasks",true] }
+const scrollContainers = {  newsContainer:[".container__main__middle--news",true] , friendsContainer:[".container__main__middle--friends",true] , eventsContainer:[".container__main__right--events",true] , tasksContainer:[".container__main__right--tasks",true] }
 
 const updateAllScrolls = () => {
     for (var component in scrollContainers) {
