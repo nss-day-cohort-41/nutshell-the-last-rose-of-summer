@@ -1,3 +1,6 @@
+// Portal Refresh Events
+// David Bruce
+
 import { populateComponents } from './main.js'
 import API from './data.js'
 
@@ -32,6 +35,7 @@ const updateAllScrolls = () => {
 const updateScroll = (divContainer,top) => {
     if (top === false) {
         divContainer.scrollTop = divContainer.scrollHeight;
+        document.querySelector(".container__messages--saved").scrollTop = document.querySelector(".container__messages--saved").scrollHeight
     } else {
         divContainer.scrollIntoView(top)
     }

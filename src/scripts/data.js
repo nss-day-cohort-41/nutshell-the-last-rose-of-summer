@@ -1,3 +1,5 @@
+// JSON Data Exchange
+// John Hester, Patrick Murphy, David Bruce
 
 const jsonUrl = 'http://localhost:8088/'
 
@@ -75,18 +77,22 @@ const API = {
         }).then(response => response.json())
     },
         //Article API Calls
-    addArticleEntry(articleObject) {
-        return fetch(`${jsonUrl}articles`, {
-            body: JSON.stringify(articleObject)
-        }).then(response =>{
-            if (response.ok ) {
-                return response.json();
-            } else {
-                return Promise.reject({ status: response.status, statusText: response.statusText})
-            }
-        })
-     
-    },
+        addArticleEntry (articleObject) {
+            return fetch(`${jsonUrl}articles`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(articleObject)
+            }).then(response =>{
+                if (response.ok ) {
+                    return response.json();
+                } else {
+                    return Promise.reject({ status: response.status, statusText: response.statusText})
+                }
+            })
+         
+            },
     deleteArticle(articleId) {
         return fetch(`${jsonUrl}articles/${articleId}`, {
             method: "DELETE" })
