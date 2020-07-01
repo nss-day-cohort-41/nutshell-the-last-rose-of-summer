@@ -77,7 +77,7 @@ const API = {
         }).then(response => response.json())
     },
         //Article API Calls
-        addArticleEntry (articleObject) {
+    addArticleEntry (articleObject) {
             return fetch(`${jsonUrl}articles`, {
                 method: "POST",
                 headers: {

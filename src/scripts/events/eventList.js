@@ -25,12 +25,18 @@ const eventList = {
     buildEventArray(allUserEvents) {
         eventArray = []
         activeUserId = parseInt(sessionStorage.getItem("activeUser"))
-        activeUserObj = API.getSingleUser(activeUserId);
+        let friendArray = []
+        
+        activeUserObj = allUserEvents.find(user => user.id === activeUserId)
+        activeUserObj.friends.forEach((friend => {
+            console.log(friend.following)
+            friendArray.push(friend.following)}))
+
     //Find friends and set object key value
         allUserEvents.forEach(user => {
             let friendOfUser = false
             user.friends.forEach(friend => {
-                if (friend.following === activeUserId) {
+         if (friendArray.includes(friend.userId)) {
                     friendOfUser = true
                 }
     // Builds event array with users and friends
