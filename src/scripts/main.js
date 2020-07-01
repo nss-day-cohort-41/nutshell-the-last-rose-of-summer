@@ -57,5 +57,6 @@ export { populateComponents };
 //task delete and complete listeners
 listeners.deleteUserTask()
 listeners.isTaskComplete()
+listeners.editTaskListener()
 
 

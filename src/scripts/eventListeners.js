@@ -182,6 +182,7 @@ const listeners = {
     discardNewTask () {
         document.querySelector("#button__discard--task").addEventListener("click", event => {
             shared.clearDataField()
+            userWelcome()
         })
 
     },
@@ -189,6 +190,7 @@ const listeners = {
         document.querySelector("#button__save--task").addEventListener("click", event => {
             taskItem.newTaskGrabber()
             shared.clearDataField()
+            userWelcome()
         })
     },
     generateUserTasks () {
@@ -218,7 +220,40 @@ const listeners = {
             }
         })
     },
+    editTaskListener () {
+        document.querySelector(".container__main__right--tasks").addEventListener("click", event => {
 
+            if(event.target.id.startsWith("buttonTask__edit--")) {
+
+                const taskId = event.target.id.split("--")[1]
+
+                taskItem.editTask(taskId)
+            }
+
+        })
+    },
+    updateTaskInDatabase () {
+        document.querySelector("#button__edit--task").addEventListener("click", event => {
+
+            const editTaskObj = {}
+            //grabs data from new task field
+            editTaskObj.userId = document.getElementById("field__task__userId").value
+            editTaskObj.task = document.getElementById("task__title").value
+            editTaskObj.completionDate = document.getElementById("task__date").value
+            editTaskObj.complete = false
+            editTaskObj.id = document.getElementById("field__task__taskId").value
+
+            editTaskObj.userId = parseInt(editTaskObj.userId, 10)
+            editTaskObj.id = parseInt(editTaskObj.id, 10)
+            
+
+            API.editUserTask(editTaskObj.id, editTaskObj)
+                .then(taskItem.taskListGenerator)
+                .then(shared.clearDataField)
+                .then(userWelcome)
+
+        })
+    },
 
     //Friends section event listeners
     enableFriendDelete() {
