@@ -2,12 +2,13 @@
 //  This module defines all the event listeners and their actions relating to Nutshell//
 
 import login from "./login.js"
-import shared from "./miscSharedFunctions.js"
 import messageDOM from "./messages/messageDOM.js"
 import messaging from "./messages/messages.js"
 import friends from "./friends/friends.js"
 import articleFunctions from './articles/articles.js'
 import eventFunctions from './events/events.js'
+import shared from './miscSharedFunctions.js'
+import { userWelcome } from './events.js'
 
 const listeners = {
 
@@ -52,8 +53,11 @@ const listeners = {
         document.querySelector(".select__box").addEventListener("change", clickEvent => {
            let userSelect = clickEvent.target.value
 
-            if (userSelect === "event") {
-                eventFunctions.addNewEventForm()
+           if (userSelect === "0") {
+                userWelcome();
+            }
+            else if (userSelect === "event") {
+                    eventFunctions.addNewEventForm()
             }
             else if (userSelect === "friend") {
                 //Invoke Add friend functionality here

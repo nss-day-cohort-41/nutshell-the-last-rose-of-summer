@@ -192,11 +192,7 @@ img::after {
     z-index:-1;
     background: linear-gradient(to bottom, rgba(149, 126, 204, 0.12) 40%,rgb(21, 24, 54) 100%);
 }
-.section__friend {
-    font-style: italic;
-    background-color: cornsilk;
-    
-}
+
 
 .container__main__middle {
     display: flex;
@@ -264,6 +260,16 @@ img::after {
     box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
 }
 
+.div__welcome {
+    display: flex;
+    justify-content: flex-start;
+    margin: 2em;
+}
+
+.div__welcome__inner {
+    display: flex;
+    justify-content: flex-start;
+}
 
 .container__messages--saved {
     flex: 6 0 0;
@@ -307,8 +313,6 @@ img::after {
 
 
 .container__main__middle--news {
-    display: flex;
-    flex-flow: column nowrap;
     flex: 7 0 0;
     color: rgb(53, 93, 131);
     font-weight: 400;
@@ -411,7 +415,7 @@ input, select, button {
     bottom:0;
     left:0;
     z-index:-1;
-   background: linear-gradient(to bottom, rgba(56, 49, 71, 0.12) 40%,rgb(150, 103, 88) 100%);
+   background: linear-gradient(to bottom, rgba(50, 41, 68, 0.12) 40%,rgb(77, 38, 25) 100%);
   }
 
 
@@ -419,7 +423,7 @@ input, select, button {
     flex: 1 0 21%;
     flex-basis: 21%;
     font-size: .8em;
-    background-color: #e6e3d9;
+    background-color: #e9e9e9;
     box-sizing: border-box;
     box-shadow:0 2px 6px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
     margin: 2px 2px 2px 2px;
@@ -429,7 +433,7 @@ input, select, button {
 
  
   .section__itemCard > p {
-   font-size: 1em;
+   font-size: .9vw;
    padding:0.01em 3px;
    margin: 2px 2px 2px 5px;
   }
@@ -441,16 +445,24 @@ input, select, button {
   .header__itemCard {
     display: flex;
     justify-content: space-between;
-    font-size: 2em;
+    font-size: 5vw;
     font-weight: 400;
     color:#201b22;
-    background-color:#FBEEC1;
+    background-color:#c7c7c7;
     margin: 0 2px;
    }
 
    .section__nextEvent {
-       font-weight: 700;
-       background-color: #e0d8c8;
+        flex: 1 0 21%;
+        flex-basis: 21%;
+        font-size: medium;
+        font-weight: 100;
+        box-sizing: border-box;
+        box-shadow:0 2px 6px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
+        margin: 2px 2px 2px 2px;
+        border-radius: 5px;   
+        font-weight: 700;
+       background-color: #bcccdb;
    }
 
    .header__itemCard.section__nextEvent {
@@ -474,3 +486,8 @@ input, select, button {
 }
 
 
+.section__friend {
+    font-style: italic;
+    background-color: cornsilk;
+    
+}
