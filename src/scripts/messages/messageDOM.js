@@ -11,8 +11,10 @@ const messageDOM = {
         messages = messageArray
         messageDOM.clearMessageSection()
         let messageSectionHTML = ``
+        let highestMsgID = 0;
         messageArray.forEach(message => {
 
+            if (message.id > highestMsgID) { highestMsgID = message.id}
             //build current user message//
             if (message.userId == sessionStorage.activeUser) {
                let userHTML = messageDOM.buildCurrentUserMessage(message)
@@ -32,12 +34,13 @@ const messageDOM = {
         )
         
         document.querySelector(".container__messages--saved").innerHTML = messageSectionHTML;
+        document.querySelector(`.section__message__${highestMsgID}`).scrollIntoView(true)
         // listeners.enableEditButton(messageArray)
     },
     //User message HTML//
     buildCurrentUserMessage(message) {
         let date = shared.dateConverter(message.date)
-        return `<section class="section__itemCard">
+        return `<section class="section__itemCard section__message__${message.id}">
                     <p class="header__itemCard">${message.userName} <button class="fas fa-user" id="buttonMsg--${message.id}">Edit</i></button></p>
                     <p><strong>${message.message}</strong> </p>
                     <p><strong>${date}</strong> </p>
