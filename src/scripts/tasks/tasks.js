@@ -1,5 +1,6 @@
 import API from "../data.js"
 import taskDom from "./taskDOM.js"
+import taskForm from "./taskForm.js"
 
 
 
@@ -42,9 +43,10 @@ export default {
             .then(this.taskListGenerator)
     },
 
-    daysRemaining () {
+    editTask (taskId) {
       
-        //future feature
+        API.getSingleTask(taskId)
+            .then(task => taskForm.insertEditForm(task))
 
     }
 

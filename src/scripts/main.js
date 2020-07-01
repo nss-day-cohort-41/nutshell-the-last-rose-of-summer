@@ -24,7 +24,6 @@ const populateComponents = () => {
     friends.getAllFriends()
     articleList.getAllArticles();
     eventList.getAllEvents();
-    taskItem.taskListGenerator()
     updateAllScrolls()
     
 }
@@ -62,5 +61,6 @@ export { populateComponents };
 //task delete and complete listeners
 listeners.deleteUserTask()
 listeners.isTaskComplete()
+listeners.editTaskListener()
 
 
