@@ -112,6 +112,7 @@ const listeners = {
            }
         )
     },
+
     enableArticleSave() {
         document.querySelector("#button__save__article").addEventListener("click", event => {
             articleFunctions.addArticleEntry();
