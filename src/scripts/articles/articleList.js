@@ -24,13 +24,19 @@ const articleList = {
     buildArticleArray(allUserArticles) {
         articleArray = []
         activeUserId = parseInt(sessionStorage.getItem("activeUser"))
-        activeUserObj = API.getSingleUser(activeUserId);
+        let friendArray = []
+
+        activeUserObj = allUserArticles.find(user => user.id === activeUserId)
+        activeUserObj.friends.forEach((friend => {
+         
+            friendArray.push(friend.activeUserId)}))
         
+
         //Find friends and set object key value
         allUserArticles.forEach(user => {
             let friendOfUser = false
             user.friends.forEach(friend => {
-                if (friend.following === activeUserId) {
+                if (friendArray.includes(friend.userId)) {
                     friendOfUser = true
                 }
     // Builds article array with users and friends
@@ -66,7 +72,7 @@ const articleList = {
                 renderArticles(article)
                 document.querySelector(`.article--${article.id}`).classList.remove("section__friend")
             }
-            // Add following friends articles and adjust class for italics and cornsilk background
+            // Add activeUserId friends articles and adjust class for italics and cornsilk background
             else if (article.friendOfUser === true ) {
                 renderArticles(article)
                 document.querySelector(`.article--${article.id}`).classList.toggle("section__friend")

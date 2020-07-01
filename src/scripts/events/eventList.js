@@ -25,12 +25,17 @@ const eventList = {
     buildEventArray(allUserEvents) {
         eventArray = []
         activeUserId = parseInt(sessionStorage.getItem("activeUser"))
-        activeUserObj = API.getSingleUser(activeUserId);
+        let friendArray = []
+        
+        activeUserObj = allUserEvents.find(user => user.id === activeUserId)
+        activeUserObj.friends.forEach((friend => {
+            friendArray.push(friend.activeUserId)}))
+
     //Find friends and set object key value
         allUserEvents.forEach(user => {
             let friendOfUser = false
             user.friends.forEach(friend => {
-                if (friend.following === activeUserId) {
+         if (friendArray.includes(friend.userId)) {
                     friendOfUser = true
                 }
     // Builds event array with users and friends
@@ -76,7 +81,7 @@ const eventList = {
                 renderEvents(event)
                 document.querySelector(`.event--${event.id}`).classList.remove("section__friend")
             }
-            // Add following friends events and adjust class for italics and cornsilk background
+            // Add activeUserId friends events and adjust class for italics and cornsilk background
             else if (event.friendOfUser === true ) {
                 renderEvents(event)
                 document.querySelector(`.event--${event.id}`).classList.toggle("section__friend")
