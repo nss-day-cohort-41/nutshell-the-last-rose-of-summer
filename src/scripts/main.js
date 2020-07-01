@@ -10,10 +10,12 @@ import listeners from "./eventListeners.js";
 // listeners.enableEditButton()
 
 listeners.login()
+listeners.logout()
 listeners.register()
 const populateComponents = () => {
 
     userWelcome();
+    document.querySelector("#button__footer__logout").classList.toggle("hidden");
     messaging.getAllMessages();
     articleList.getAllArticles();
     eventList.getAllEvents();

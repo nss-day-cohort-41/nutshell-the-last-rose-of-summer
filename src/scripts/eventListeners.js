@@ -25,7 +25,17 @@ const listeners = {
 
         })
     },
+    
+    logout () {
+        document.querySelector("#button__footer__logout").addEventListener("click", event => {
+            sessionStorage.removeItem("activeUser")
+            location.reload();
+            document.querySelector("#button__footer__logout").classList.toggle("hidden")
 
+        })
+        
+
+    },
     register () {
         document.querySelector("#registerButton").addEventListener("click", event => {
 
