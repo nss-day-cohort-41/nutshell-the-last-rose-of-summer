@@ -5,18 +5,19 @@ import articleList from './articles/articleList.js';
 import eventList from './events/eventList.js';
 import { updateAllScrolls, userWelcome } from './events.js';
 import listeners from "./eventListeners.js";
+import taskItem from "./tasks/tasks.js"
 
-// listeners.enableAddItemListener ()
-// listeners.enableEditButton()
 
 listeners.login()
 listeners.register()
+
 const populateComponents = () => {
 
     userWelcome();
     messaging.getAllMessages();
     articleList.getAllArticles();
     eventList.getAllEvents();
+    taskItem.taskListGenerator()
     updateAllScrolls()
     
 }
@@ -34,7 +35,11 @@ if (activeUserId !== null) {
 
 
 if (activeUserId !== null) {
-
+    listeners.enableAddItemListener()
+    listeners.enableEditButton()
+    //initial task generation
+    listeners.generateUserTasks()
+    
     console.log(`Active ID ${activeUserId}`)
     populateComponents();
     
@@ -45,8 +50,8 @@ if (activeUserId !== null) {
 const messageContainer = document.querySelector(".container__messages--saved")
 
 
-listeners.enableAddItemListener ()
-listeners.enableEditButton()
+// listeners.enableAddItemListener ()
+// listeners.enableEditButton()
 listeners.enableFriendDelete()
 
 
@@ -55,5 +60,9 @@ friends.getAllFriends()
 // pass divContainer, htmlpage or var, type ("file", or "variable")
 // updateForm()
 export { populateComponents };
+
+//task delete and complete listeners
+listeners.deleteUserTask()
+listeners.isTaskComplete()
 
 

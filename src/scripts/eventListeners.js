@@ -10,6 +10,10 @@ import eventFunctions from './events/events.js'
 import shared from './miscSharedFunctions.js'
 import { userWelcome } from './events.js'
 
+import taskSelect from './tasks/taskForm.js'
+import taskItem from './tasks/tasks.js'
+import API from "./data.js"
+
 const listeners = {
 
     // event listener object
@@ -71,7 +75,7 @@ const listeners = {
                 articleFunctions.addNewArticleForm()
             }
             else if (userSelect === "task") {
-                //Invoke Add task functionality here
+                taskSelect.insertTaskForm()
             }
         } )
 
@@ -162,6 +166,49 @@ const listeners = {
             messageDOM.buildMessageObject()
         })
     },
+
+    // task section event listeners 
+    discardNewTask () {
+        document.querySelector("#button__discard--task").addEventListener("click", event => {
+            shared.clearDataField()
+        })
+
+    },
+    saveNewTask () {
+        document.querySelector("#button__save--task").addEventListener("click", event => {
+            taskItem.newTaskGrabber()
+            shared.clearDataField()
+        })
+    },
+    generateUserTasks () {
+        taskItem.taskListGenerator()
+    },
+    deleteUserTask () {
+        document.querySelector(".container__main__right--tasks").addEventListener("click", event => {
+            if(event.target.id.startsWith("buttonTask__delete--")) {
+                // gets task id from delete button 
+                const deleteId = event.target.id.split("--")[1]
+
+                API.deleteTask(deleteId)
+                .then(taskItem.taskListGenerator)
+
+            }
+        })
+    },
+    isTaskComplete () {
+        document.querySelector(".container__main__right--tasks").addEventListener("change", event => {
+            
+            // gets task id from checkbox
+            if(event.target.id.startsWith("taskComplete--")) {
+
+                const taskId = event.target.id.split("--")[1]
+
+                taskItem.renderTaskComplete(taskId)
+            }
+        })
+    },
+
+
     //Friends section event listeners
     enableFriendDelete() {
         document.querySelector(".container__main__middle--friends").addEventListener("click", event => {

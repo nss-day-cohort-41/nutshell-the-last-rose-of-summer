@@ -11,7 +11,9 @@ export default {
         API.getAllUsers()
             .then( users => users.find( user => {
                 //compare all existing usernames and passwords to locate user
-                if (user.password === password && user.userName === userName){
+                if (user.password !== password && user.userName === userName) {
+                    alert("Please re-enter your password.")
+                } else if (user.password === password && user.userName === userName){
                     session.storeUser(user.id, user.userName)
                     console.log(user)
                     console.log(userName)
