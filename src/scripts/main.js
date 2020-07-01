@@ -1,11 +1,13 @@
+import API from "./data.js"
+import friends from "./friends/friends.js"
 import messaging from "./messages/messages.js";
 import articleList from './articles/articleList.js';
 import eventList from './events/eventList.js';
 import { updateAllScrolls } from './events.js';
 import listeners from "./eventListeners.js";
 
-listeners.enableAddItemListener ()
-listeners.enableEditButton()
+// listeners.enableAddItemListener ()
+// listeners.enableEditButton()
 
 listeners.login()
 listeners.register()
@@ -42,6 +44,15 @@ if (activeUserId !== null) {
 const messageContainer = document.querySelector(".container__messages--saved")
 
 
+listeners.enableAddItemListener ()
+listeners.enableEditButton()
+listeners.enableFriendDelete()
+
+
+messaging.getAllMessages()
+friends.getAllFriends()
+// pass divContainer, htmlpage or var, type ("file", or "variable")
+// updateForm()
 export { populateComponents };
 
 

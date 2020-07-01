@@ -10,11 +10,12 @@ const shared = {
         return date = `${date[1]}-${date[2]}-${date[0]}`
     },
 
-     //Discard changes to field entry area
+//Discard changes made to the data field section
     clearDataField() {
         document.querySelector(".container__main__left--messages").innerHTML = ``
         document.querySelector(".select__box").value = 0
-    },
+        },
+
 
     clearSections() {
         const articleSection = document.querySelector(".container__main__middle--news");
