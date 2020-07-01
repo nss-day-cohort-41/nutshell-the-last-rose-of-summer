@@ -2,12 +2,17 @@
 //  This module defines all the event listeners and their actions relating to Nutshell//
 
 import login from "./login.js"
-import shared from "./miscSharedFunctions.js"
 import messageDOM from "./messages/messageDOM.js"
 import messaging from "./messages/messages.js"
 import friends from "./friends/friends.js"
 import articleFunctions from './articles/articles.js'
 import eventFunctions from './events/events.js'
+import shared from './miscSharedFunctions.js'
+import { userWelcome } from './events.js'
+
+import taskSelect from './tasks/taskForm.js'
+import taskItem from './tasks/tasks.js'
+import API from "./data.js"
 
 const listeners = {
 
@@ -24,7 +29,17 @@ const listeners = {
 
         })
     },
+    
+    logout () {
+        document.querySelector("#button__footer__logout").addEventListener("click", event => {
+            sessionStorage.removeItem("activeUser")
+            location.reload();
+            document.querySelector("#button__footer__logout").classList.toggle("hidden")
 
+        })
+        
+
+    },
     register () {
         document.querySelector("#registerButton").addEventListener("click", event => {
 
@@ -52,8 +67,11 @@ const listeners = {
         document.querySelector(".select__box").addEventListener("change", clickEvent => {
            let userSelect = clickEvent.target.value
 
-            if (userSelect === "event") {
-                eventFunctions.addNewEventForm()
+           if (userSelect === "0") {
+                userWelcome();
+            }
+            else if (userSelect === "event") {
+                    eventFunctions.addNewEventForm()
             }
             else if (userSelect === "friend") {
                 //Invoke Add friend functionality here
@@ -67,7 +85,7 @@ const listeners = {
                 articleFunctions.addNewArticleForm()
             }
             else if (userSelect === "task") {
-                //Invoke Add task functionality here
+                taskSelect.insertTaskForm()
             }
         } )
 
@@ -94,6 +112,7 @@ const listeners = {
            }
         )
     },
+
     enableArticleSave() {
         document.querySelector("#button__save__article").addEventListener("click", event => {
             articleFunctions.addArticleEntry();
@@ -158,6 +177,84 @@ const listeners = {
             messageDOM.buildMessageObject()
         })
     },
+
+    // task section event listeners 
+    discardNewTask () {
+        document.querySelector("#button__discard--task").addEventListener("click", event => {
+            shared.clearDataField()
+            userWelcome()
+        })
+
+    },
+    saveNewTask () {
+        document.querySelector("#button__save--task").addEventListener("click", event => {
+            taskItem.newTaskGrabber()
+            shared.clearDataField()
+            userWelcome()
+        })
+    },
+    generateUserTasks () {
+        taskItem.taskListGenerator()
+    },
+    deleteUserTask () {
+        document.querySelector(".container__main__right--tasks").addEventListener("click", event => {
+            if(event.target.id.startsWith("buttonTask__delete--")) {
+                // gets task id from delete button 
+                const deleteId = event.target.id.split("--")[1]
+
+                API.deleteTask(deleteId)
+                .then(taskItem.taskListGenerator)
+
+            }
+        })
+    },
+    isTaskComplete () {
+        document.querySelector(".container__main__right--tasks").addEventListener("change", event => {
+            
+            // gets task id from checkbox
+            if(event.target.id.startsWith("taskComplete--")) {
+
+                const taskId = event.target.id.split("--")[1]
+
+                taskItem.renderTaskComplete(taskId)
+            }
+        })
+    },
+    editTaskListener () {
+        document.querySelector(".container__main__right--tasks").addEventListener("click", event => {
+
+            if(event.target.id.startsWith("buttonTask__edit--")) {
+
+                const taskId = event.target.id.split("--")[1]
+
+                taskItem.editTask(taskId)
+            }
+
+        })
+    },
+    updateTaskInDatabase () {
+        document.querySelector("#button__edit--task").addEventListener("click", event => {
+
+            const editTaskObj = {}
+            //grabs data from new task field
+            editTaskObj.userId = document.getElementById("field__task__userId").value
+            editTaskObj.task = document.getElementById("task__title").value
+            editTaskObj.completionDate = document.getElementById("task__date").value
+            editTaskObj.complete = false
+            editTaskObj.id = document.getElementById("field__task__taskId").value
+
+            editTaskObj.userId = parseInt(editTaskObj.userId, 10)
+            editTaskObj.id = parseInt(editTaskObj.id, 10)
+            
+
+            API.editUserTask(editTaskObj.id, editTaskObj)
+                .then(taskItem.taskListGenerator)
+                .then(shared.clearDataField)
+                .then(userWelcome)
+
+        })
+    },
+
     //Friends section event listeners
     enableFriendDelete() {
         document.querySelector(".container__main__middle--friends").addEventListener("click", event => {

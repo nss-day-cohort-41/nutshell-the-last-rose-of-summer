@@ -8,6 +8,8 @@ import listeners from './../eventListeners.js';
 const eventSection = document.querySelector(".container__main__right--events");
 let eventArray = [];
 let nextEvent = {};
+let activeUserObj = {};
+let activeUserId = "";
 
 const eventList = {
 
@@ -22,11 +24,13 @@ const eventList = {
     //Build event array
     buildEventArray(allUserEvents) {
         eventArray = []
+        activeUserId = parseInt(sessionStorage.getItem("activeUser"))
+        activeUserObj = API.getSingleUser(activeUserId);
     //Find friends and set object key value
         allUserEvents.forEach(user => {
             let friendOfUser = false
             user.friends.forEach(friend => {
-                if (friend.following == sessionStorage.activeUser) {
+                if (friend.following === activeUserId) {
                     friendOfUser = true
                 }
     // Builds event array with users and friends
@@ -34,12 +38,10 @@ const eventList = {
             user.events.forEach(event => {
                 event.userName = user.userName
                 event.friendOfUser = friendOfUser
-                if ( event.friendOfUser = true || event.userId === sessionStorage.activeUser) {
+                if ( event.friendOfUser === true || event.userId === activeUserId) {
                     eventArray.push(event)
                 }
-                
             })
-
         });
     
     // Sorts for newest event to go to top of list
@@ -70,7 +72,7 @@ const eventList = {
         eventSection.innerHTML = ""  
         eventArray.forEach(event => {
             // Add active user event and adjust class for no italics
-            if (event.userId == sessionStorage.activeUser) {
+            if (event.userId == activeUserId) {
                 renderEvents(event)
                 document.querySelector(`.event--${event.id}`).classList.remove("section__friend")
             }
@@ -78,6 +80,7 @@ const eventList = {
             else if (event.friendOfUser === true ) {
                 renderEvents(event)
                 document.querySelector(`.event--${event.id}`).classList.toggle("section__friend")
+                document.querySelector(`#button__event__delete--${event.id}`).classList.toggle("hidden")
             }                
             if ( event.id === nextEvent.id ) {
                 document.querySelector(`.event--${event.id}`).classList.toggle("section__nextEvent")

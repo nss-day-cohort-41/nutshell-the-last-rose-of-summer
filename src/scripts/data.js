@@ -1,3 +1,5 @@
+// JSON Data Exchange
+// John Hester, Patrick Murphy, David Bruce
 
 const jsonUrl = 'http://localhost:8088/'
 
@@ -80,18 +82,22 @@ const API = {
     },
 
         //Article API Calls
-    addArticleEntry(articleObject) {
-        return fetch(`${jsonUrl}articles`, {
-            body: JSON.stringify(articleObject)
-        }).then(response =>{
-            if (response.ok ) {
-                return response.json();
-            } else {
-                return Promise.reject({ status: response.status, statusText: response.statusText})
-            }
-        })
-     
-    },
+        addArticleEntry (articleObject) {
+            return fetch(`${jsonUrl}articles`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(articleObject)
+            }).then(response =>{
+                if (response.ok ) {
+                    return response.json();
+                } else {
+                    return Promise.reject({ status: response.status, statusText: response.statusText})
+                }
+            })
+         
+            },
     deleteArticle(articleId) {
         return fetch(`${jsonUrl}articles/${articleId}`, {
             method: "DELETE" })
@@ -120,8 +126,54 @@ const API = {
               }})
     },
 
+
+    // all task related fetch calls 
+    getAllUserTasks (userId) {
+        return fetch(`${jsonUrl}users/${userId}?_embed=tasks`)
+            .then(response => response.json())
+    },
+
+    saveNewTask (taskObj) {
+        return fetch(`${jsonUrl}tasks`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(taskObj)
+        }).then(response => response.json())
+    },
+    deleteTask (taskId) {
+        return fetch(`${jsonUrl}tasks/${taskId}`, {
+            method: "DELETE"
+        }).then(response => response.json())
+
+    },
+    getSingleTask (taskId) {
+        return fetch(`${jsonUrl}tasks/${taskId}`)
+            .then(response => response.json())
+    },
+    completeUserTask (completedTaskObj) {
+        return fetch(`${jsonUrl}tasks/${completedTaskObj.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(completedTaskObj)
+        }).then(response => response.json())
+    },
+    editUserTask (taskId, updatedTaskObj) {
+        return fetch(`${jsonUrl}tasks/${taskId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updatedTaskObj)
+        }).then(response => response.json())
+    },
+
+
    //Event API Calls
-   addEventEntry(eventObject) {
+   addEventEntry (eventObject) {
     return fetch(`${jsonUrl}events`, {
         method: "POST",
         headers: {
