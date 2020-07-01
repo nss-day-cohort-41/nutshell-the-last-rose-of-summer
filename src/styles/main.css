@@ -260,6 +260,16 @@ img::after {
     box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
 }
 
+.div__welcome {
+    display: flex;
+    justify-content: flex-start;
+    margin: 2em;
+}
+
+.div__welcome__inner {
+    display: flex;
+    justify-content: flex-start;
+}
 
 .container__messages--saved {
     flex: 6 0 0;
@@ -423,7 +433,7 @@ input, select, button {
 
  
   .section__itemCard > p {
-   font-size: 1em;
+   font-size: .9vw;
    padding:0.01em 3px;
    margin: 2px 2px 2px 5px;
   }
@@ -435,7 +445,7 @@ input, select, button {
   .header__itemCard {
     display: flex;
     justify-content: space-between;
-    font-size: 2em;
+    font-size: 5vw;
     font-weight: 400;
     color:#201b22;
     background-color:#c7c7c7;

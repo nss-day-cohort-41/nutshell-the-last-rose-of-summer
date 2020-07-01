@@ -8,6 +8,8 @@ import listeners from './../eventListeners.js';
 const eventSection = document.querySelector(".container__main__right--events");
 let eventArray = [];
 let nextEvent = {};
+let activeUserObj = {};
+let activeUserId = "";
 
 const eventList = {
 
@@ -22,11 +24,13 @@ const eventList = {
     //Build event array
     buildEventArray(allUserEvents) {
         eventArray = []
+        activeUserId = parseInt(sessionStorage.getItem("activeUser"))
+        activeUserObj = API.getSingleUser(activeUserId);
     //Find friends and set object key value
         allUserEvents.forEach(user => {
             let friendOfUser = false
             user.friends.forEach(friend => {
-                if (friend.following == sessionStorage.activeUser) {
+                if (friend.following === activeUserId) {
                     friendOfUser = true
                 }
     // Builds event array with users and friends
@@ -34,7 +38,7 @@ const eventList = {
             user.events.forEach(event => {
                 event.userName = user.userName
                 event.friendOfUser = friendOfUser
-                if ( event.friendOfUser = true || event.userId === sessionStorage.activeUser) {
+                if ( event.friendOfUser === true || event.userId === activeUserId) {
                     eventArray.push(event)
                 }
                 
@@ -70,7 +74,7 @@ const eventList = {
         eventSection.innerHTML = ""  
         eventArray.forEach(event => {
             // Add active user event and adjust class for no italics
-            if (event.userId == sessionStorage.activeUser) {
+            if (event.userId == activeUserId) {
                 renderEvents(event)
                 document.querySelector(`.event--${event.id}`).classList.remove("section__friend")
             }
