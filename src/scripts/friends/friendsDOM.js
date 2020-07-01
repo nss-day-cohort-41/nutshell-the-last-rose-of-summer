@@ -38,7 +38,7 @@ const friendsDOM = {
         document.querySelector("#foundUser").innerHTML = ``
         searchDisplayArray.forEach(toDisplay => {
             let displayHTML = `
-            <p class="header__itemCard">${toDisplay.userName} <button class="fas fa-user-plus" id="buttonAddMsg--${toDisplay.id}"></button></p>
+            <p class="header__itemCard">${toDisplay.userName} <button class="fas fa-user-plus" id="buttonAddMsg--${toDisplay.id}" value="${toDisplay.userName}"></button></p>
             `
             searchFoundHTML += displayHTML
         })

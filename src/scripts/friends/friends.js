@@ -11,24 +11,18 @@ let userArray = []
 let foundArray = []
 let searchDisplayArray = []
 const friends = {
+    //Get friend information by expanding on the users friend json//
     getPrimaryUserAndFriends() {
         API.getFriendData(sessionStorage.activeUser)
         .then((response) => {
             friends.buildFriendsArray(response)
 
-        })
-        // let id = sessionStorage.activeUser
-        // API.getPrimaryUserandFriends(id)
-        // .then((response) => {
-            // let activeUser = primary
-            // console.log(activeUser)
-            
-        
+        })        
     },
     
     buildFriendsArray(friends) {
         friendsArray = []
-        //build an array out of the friend data
+    //build an array out of the friend data
         friends.forEach(friend => {
                 let friendObj = {
                     "jsonReferenceId": friend.id,
@@ -38,14 +32,12 @@ const friends = {
                     "isFriend": true,
                     "friendsSince": friend.date
                 }
-
                 friendsArray.push(friendObj)
-
             }
         )
         friendsDOM.buildFriendList(friendsArray)
     },
-
+    //Delete a friend//
     friendRemove(deleteId) {
         let friendToDelete = friendsArray.find(unFriend => {
             return (unFriend.friendId == deleteId)
@@ -70,19 +62,15 @@ const friends = {
         foundArray = []
         let querry = document.querySelector("#userSearch").value
         document.querySelector("#foundUser").innerHTML = ``
-        if (querry.length > 0) {
+        console.log(querry)
+        if (querry.length > 1) {
             API.searchForUser(querry)
-            .then((userArray) => {
-            userArray.forEach(user => {
-                friends.filterArray(foundArray)
-
-            })
-
-            
-            
-            
-        })
-       
+            .then((result) => {
+                console.log(result)
+            // result.forEach(user => {
+                friends.filterArray(result)
+                // })        
+            })     
         }
     },
     //filters the search results to remove current friends and primary user//
@@ -91,7 +79,7 @@ const friends = {
         rawSearchArray.forEach(result => {
             //Check to make sure result is not user//
             if (result.id != sessionStorage.activeUser) {
-                //Check current friends//
+                //Check for current friends//
                 let friendNow = false
                 friendsArray.forEach(friend => {
                     if(result.id === friend.friendId) {
