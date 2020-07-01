@@ -59,7 +59,7 @@ const API = {
     getAllUsersAndFriends () {
     return fetch(`${jsonUrl}users?_embed=friends`)
         .then(response => response.json())
-},
+    },
     unfollow(id) {
         return fetch(`${jsonUrl}friends/${id}`, {
             method: "DELETE"

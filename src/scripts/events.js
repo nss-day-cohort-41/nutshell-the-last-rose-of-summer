@@ -1,8 +1,25 @@
 import { populateComponents } from './main.js'
+import API from './data.js'
 
 // Object of containers and true for scroll to top/false for bottom for Scroll functions
 // David Bruce
 const scrollContainers = { messageContainer:[".container__messages--saved",false] , newsContainer:[".container__main__middle--news",true] , friendsContainer:[".container__main__middle--friends",true] , eventsContainer:[".container__main__right--events",true] , tasksContainer:[".container__main__right--tasks",true] }
+
+const userWelcome = () => {
+    const formContainer = document.querySelector(".container__main__left--messages")
+    formContainer.innerHTML = "";
+    const activeUserId = parseInt(sessionStorage.getItem("activeUser"))
+    API.getSingleUser(activeUserId)
+      .then((activeUserObject => {
+        formContainer.innerHTML += `
+        <div class="div__welcome">
+            <div class="div__welcome__inner">
+                <h4>Welcome, ${activeUserObject.userName}</h4>
+            </div>
+        </div>
+        `;  
+    })) 
+}
 
 const updateAllScrolls = () => {
     for (var component in scrollContainers) {
@@ -33,5 +50,5 @@ const updatePortalLoggedIn = () => {
 }
 
 
-export { updateAllScrolls, updatePortalLoggedIn };
+export { updateAllScrolls, updatePortalLoggedIn, userWelcome };
 
