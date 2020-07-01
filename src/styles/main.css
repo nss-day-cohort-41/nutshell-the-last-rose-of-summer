@@ -313,8 +313,6 @@ img::after {
 
 
 .container__main__middle--news {
-    display: flex;
-    flex-flow: column nowrap;
     flex: 7 0 0;
     color: rgb(53, 93, 131);
     font-weight: 400;

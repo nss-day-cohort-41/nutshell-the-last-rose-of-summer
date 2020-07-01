@@ -70,6 +70,7 @@ const articleList = {
             else if (article.friendOfUser === true ) {
                 renderArticles(article)
                 document.querySelector(`.article--${article.id}`).classList.toggle("section__friend")
+                document.querySelector(`button__article__delete--${article.id}`).classList.toggle("hidden")
             }                
             listeners.enableArticleDeleteButton();
         })

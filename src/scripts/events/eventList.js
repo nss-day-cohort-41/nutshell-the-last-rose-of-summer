@@ -41,9 +41,7 @@ const eventList = {
                 if ( event.friendOfUser === true || event.userId === activeUserId) {
                     eventArray.push(event)
                 }
-                
             })
-
         });
     
     // Sorts for newest event to go to top of list
@@ -82,6 +80,7 @@ const eventList = {
             else if (event.friendOfUser === true ) {
                 renderEvents(event)
                 document.querySelector(`.event--${event.id}`).classList.toggle("section__friend")
+                document.querySelector(`#button__event__delete--${event.id}`).classList.toggle("hidden")
             }                
             if ( event.id === nextEvent.id ) {
                 document.querySelector(`.event--${event.id}`).classList.toggle("section__nextEvent")
