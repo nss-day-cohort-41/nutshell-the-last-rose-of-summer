@@ -29,7 +29,7 @@ const eventList = {
         
         activeUserObj = allUserEvents.find(user => user.id === activeUserId)
         activeUserObj.friends.forEach((friend => {
-            friendArray.push(friend.following)}))
+            friendArray.push(friend.activeUserId)}))
 
     //Find friends and set object key value
         allUserEvents.forEach(user => {
@@ -81,7 +81,7 @@ const eventList = {
                 renderEvents(event)
                 document.querySelector(`.event--${event.id}`).classList.remove("section__friend")
             }
-            // Add following friends events and adjust class for italics and cornsilk background
+            // Add activeUserId friends events and adjust class for italics and cornsilk background
             else if (event.friendOfUser === true ) {
                 renderEvents(event)
                 document.querySelector(`.event--${event.id}`).classList.toggle("section__friend")
