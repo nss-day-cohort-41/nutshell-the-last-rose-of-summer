@@ -3,7 +3,6 @@ This module's purpose is to build the DOM elements for the friends section of Nu
 import miscSharedFunctions from "../miscSharedFunctions.js"
 import listeners from "../eventListeners.js"
 
-// let friendsListHTML = ``
 
 const friendsDOM = {
 
@@ -86,6 +85,3 @@ const friendElementHTML = (friend) => {
 }
 export default friendsDOM
 
-
-/* <p class="header__itemCard">${message.userName} <button class="fas fa-user-plus" id="buttonAddMsg--${message.userId}"></button></p>
-                    <p><strong>${message.message}</strong> </p> */

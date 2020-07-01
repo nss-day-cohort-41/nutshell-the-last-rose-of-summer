@@ -59,7 +59,7 @@ const messageDOM = {
     buildStrangerMessage(message) {
         let date = shared.dateConverter(message.date)
         return `<section class="section__itemCard">
-                    <p class="header__itemCard">${message.userName} <button class="fas fa-user-plus" id="buttonAddMsg--${message.userId}"></button></p>
+                    <p class="header__itemCard">${message.userName} <button class="fas fa-user-plus" id="buttonAddMsg--${message.userId}" value="${message.userName}"></button></p>
                     <p><strong>${message.message}</strong> </p>
                     <p><strong>${date}</strong> </p>
         </section>

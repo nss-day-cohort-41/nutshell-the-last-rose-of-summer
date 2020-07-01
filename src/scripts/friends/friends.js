@@ -11,27 +11,41 @@ let userArray = []
 let foundArray = []
 let searchDisplayArray = []
 const friends = {
-    
-    getAllFriends () {
-        API.getAllUsersAndFriends()
+    getPrimaryUserAndFriends() {
+        API.getFriendData(sessionStorage.activeUser)
         .then((response) => {
-            userArray = response
-            friends.buildFriendsArray()
-        })
-    },
-    buildFriendsArray() {
-        friendsArray = []
+            friends.buildFriendsArray(response)
 
-        //locate active user in data array
-        let activeUser = userArray.find(array => {
-            return (array.userName === sessionStorage.activeUserName)
         })
-        //find all friends of active user and add them to the friends array
-        activeUser.friends.forEach(friend => {
-            friends.findFriend(friend)
-        });
+        // let id = sessionStorage.activeUser
+        // API.getPrimaryUserandFriends(id)
+        // .then((response) => {
+            // let activeUser = primary
+            // console.log(activeUser)
+            
+        
+    },
+    
+    buildFriendsArray(friends) {
+        friendsArray = []
+        //build an array out of the friend data
+        friends.forEach(friend => {
+                let friendObj = {
+                    "jsonReferenceId": friend.id,
+                    "friendName": friend.user.userName,
+                    "friendEmail": friend.user.email,
+                    "friendId": friend.user.id,
+                    "isFriend": true,
+                    "friendsSince": friend.date
+                }
+
+                friendsArray.push(friendObj)
+
+            }
+        )
         friendsDOM.buildFriendList(friendsArray)
     },
+
     friendRemove(deleteId) {
         let friendToDelete = friendsArray.find(unFriend => {
             return (unFriend.friendId == deleteId)
@@ -42,25 +56,10 @@ const friends = {
             API.unfollow(id)
             .then(() => {
                 document.querySelector(".container__main__middle--friends").innerHTML = ``
-                friends.getAllFriends()
+                friends.getPrimaryUserAndFriends()
                 messaging.getAllMessages()
             })
         }
-    },
-    findFriend(friend) {
-        userArray.forEach(user => {
-            if (user.id === friend.following) {
-                let friendObj = {
-                    "jsonReferenceId": friend.id,
-                    "friendName": user.userName,
-                    "friendEmail": user.email,
-                    "friendId": user.id,
-                    "isFriend": true,
-                    "friendsSince": friend.date
-                }
-                friendsArray.push(friendObj)
-            }
-        })
     },
     //Search user array for a specific person to follow//
     search() {
@@ -72,14 +71,18 @@ const friends = {
         let querry = document.querySelector("#userSearch").value
         document.querySelector("#foundUser").innerHTML = ``
         if (querry.length > 0) {
-        userArray.forEach(user => {
-            if (user.userName.toLowerCase().includes(querry.toLowerCase())) {
-                foundArray.push(user)
-            } 
+            API.searchForUser(querry)
+            .then((userArray) => {
+            userArray.forEach(user => {
+                friends.filterArray(foundArray)
+
+            })
+
+            
             
             
         })
-       friends.filterArray(foundArray)
+       
         }
     },
     //filters the search results to remove current friends and primary user//
@@ -111,23 +114,23 @@ const friends = {
         let user = sessionStorage.activeUser
         user = parseInt(user)
         let friendObj = {
-            "userId": user,
-            "following": followingId,
+            "activeUserId": user,
+            "userId": followingId,
             "date": new Date()
         }
-        let followNameArray = userArray.find(user => {
-            if (followingId === user.id) {
-                return user
-            }
-        })
-        let addFriend = confirm(`Are you sure you wish to follow ${followNameArray.userName}`)
+        // let followNameArray = userArray.find(user => {
+        //     if (followingId === user.id) {
+        //         return user
+        //     }
+        // })
+        let addFriend = confirm(`Are you sure you wish to follow ${event.target.value}`)
         if (addFriend === true) {
             
             API.follow(friendObj)
             .then(() => {
                 document.querySelector(".container__main__middle--friends").innerHTML = ``
                 
-                friends.getAllFriends()
+                friends.getPrimaryUserAndFriends()
                 messaging.getAllMessages();
                 if (searchDisplayArray.length > 1) {
                   let newsearchDisplayArray = searchDisplayArray.filter(array =>{

@@ -14,10 +14,13 @@ import listeners from "./eventListeners.js";
 listeners.login()
 listeners.register()
 const populateComponents = () => {
-
-    messaging.getAllMessages();
+    API.getUserData (sessionStorage.activeUser)
+    .then((primary) => {
+    messaging.getAllMessages(primary);
     articleList.getAllArticles();
     eventList.getAllEvents();
+    friends.getPrimaryUserAndFriends(primary)
+    })
     updateAllScrolls()
     
 }
@@ -51,8 +54,9 @@ listeners.enableEditButton()
 listeners.enableFriendDelete()
 
 
-messaging.getAllMessages()
-friends.getAllFriends()
+// messaging.getAllMessages()
+// friends.getPrimaryUserAndFriends()
+// friends.getAllFriends()
 // pass divContainer, htmlpage or var, type ("file", or "variable")
 // updateForm()
 export { populateComponents };

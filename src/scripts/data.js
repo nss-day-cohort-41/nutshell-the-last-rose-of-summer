@@ -55,11 +55,12 @@ const API = {
         });
     },
 //**All friend field related FETCH calls**// 
-
-    getAllUsersAndFriends () {
-    return fetch(`${jsonUrl}users?_embed=friends`)
+    
+    //get user data for a single friend of Primary
+    getFriendData(id) {
+        return fetch(`${jsonUrl}friends?activeUserId=${id}&_expand=user`)
         .then(response => response.json())
-},
+    },
     unfollow(id) {
         return fetch(`${jsonUrl}friends/${id}`, {
             method: "DELETE"
@@ -74,6 +75,11 @@ const API = {
             body: JSON.stringify(followObj)
         }).then(response => response.json())
     },
+    searchForUser(search){
+        return fetch(`${jsonUrl}users?q=${search}`)
+        .then(response => response.json())
+    },
+
         //Article API Calls
     addArticleEntry(articleObject) {
         return fetch(`${jsonUrl}articles`, {
