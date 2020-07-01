@@ -181,6 +181,7 @@ const listeners = {
     discardNewTask () {
         document.querySelector("#button__discard--task").addEventListener("click", event => {
             shared.clearDataField()
+            userWelcome()
         })
 
     },
@@ -188,6 +189,7 @@ const listeners = {
         document.querySelector("#button__save--task").addEventListener("click", event => {
             taskItem.newTaskGrabber()
             shared.clearDataField()
+            userWelcome()
         })
     },
     generateUserTasks () {
@@ -247,6 +249,7 @@ const listeners = {
             API.editUserTask(editTaskObj.id, editTaskObj)
                 .then(taskItem.taskListGenerator)
                 .then(shared.clearDataField)
+                .then(userWelcome)
 
         })
     },
