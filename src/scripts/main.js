@@ -15,8 +15,13 @@ listeners.register()
 const populateComponents = () => {
 
     userWelcome();
+    listeners.enableAddItemListener ()
+    listeners.generateUserTasks()
+    listeners.enableEditButton()
+    listeners.enableFriendDelete()
     document.querySelector("#button__footer__logout").classList.toggle("hidden");
     messaging.getAllMessages();
+    friends.getAllFriends()
     articleList.getAllArticles();
     eventList.getAllEvents();
     taskItem.taskListGenerator()
@@ -37,11 +42,7 @@ if (activeUserId !== null) {
 
 
 if (activeUserId !== null) {
-    listeners.enableAddItemListener()
-    listeners.enableEditButton()
     //initial task generation
-    listeners.generateUserTasks()
-    
     console.log(`Active ID ${activeUserId}`)
     populateComponents();
     
@@ -52,13 +53,8 @@ if (activeUserId !== null) {
 const messageContainer = document.querySelector(".container__messages--saved")
 
 
-// listeners.enableAddItemListener ()
-// listeners.enableEditButton()
-listeners.enableFriendDelete()
 
 
-messaging.getAllMessages()
-friends.getAllFriends()
 // pass divContainer, htmlpage or var, type ("file", or "variable")
 // updateForm()
 export { populateComponents };
