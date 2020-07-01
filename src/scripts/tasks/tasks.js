@@ -43,11 +43,9 @@ export default {
     },
 
     daysRemaining () {
-        let newTime = Date()
-        let oldTime = Date()
+      
+        //future feature
 
-        let time = newTime - oldTime
-        console.log("Time math!", time)
     }
 
 }

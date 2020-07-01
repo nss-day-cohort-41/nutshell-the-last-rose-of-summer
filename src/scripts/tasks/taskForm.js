@@ -10,7 +10,6 @@ export default {
         const taskSelect = `
         <section id="section__itemCard" >
             <input type="hidden" id="field__task__userId" value="${sessionStorage.activeUser}"/>
-            <p class="header__itemCard">${sessionStorage.activeUserName}</p>
             <fieldset class="fieldset__task__title">
                 <label for="task__title">Task: </label>
                 <input type="text" class="field__text" id="task__title" name="task__title">
