@@ -32,6 +32,7 @@ position:relative;
   min-width:300px;
   color:#eee;
 }
+
 .header:after{
   content:"";
   width:100%;
@@ -42,6 +43,7 @@ position:relative;
   z-index:-1;
  background: linear-gradient(to bottom, rgba(149, 126, 204, 0.12) 40%,rgb(21, 24, 54) 100%);
 }
+
 .header:before{
   content:"";
   width:100%;
@@ -60,6 +62,7 @@ position:relative;
   transition:all 0.4s ease-in-out;
   z-index:-2
 }
+
 .header a{
   color:#eee
 }
@@ -395,28 +398,50 @@ input, select, button {
     background-image: url(../images/walnut-nut-harvest-nuts.png); 
     margin: 0 auto 0 auto;
     width: 99%;
-    height:10%;
-    padding: 0 .5em .5em .5em;
+    height:9%;
+    padding: 0 .5em 0 .5em;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
     justify-content: center;
     background-color: "";
-    -moz-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
-    -webkit-box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
-    box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+    -moz-box-shadow: 5px 5px 5px rgba(124, 38, 11, 0.8);
+    -webkit-box-shadow: 5px 5px 5px rgba(105, 39, 9, 0.8);
+    box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.8);
+  }
+    
+  .body__footer {
+    display: flex;
+    flex-flow: row;
+      height: auto;
+      width: auto;
+      justify-content: center;
+      font-size: small;
+      color: #f3f3f3;
+  }
+  .footer__text {
+      flex: 1 0 100%;
+      height: auto;
+      width: auto;
+      justify-content: center;
+      text-align: center;
   }
 
-  .container__footer::after{
-    content:"";
-    width: 99%;
-    height:10%;
-    position:absolute;
-    bottom:0;
-    left:0;
-    z-index:-1;
-   background: linear-gradient(to bottom, rgba(50, 41, 68, 0.12) 40%,rgb(77, 38, 25) 100%);
+  .paragraph__footer__copyright {
+      margin: 0;
+      font-size: .8em;
+      justify-items: center;
   }
+
+  
+  .button__footer__logout {
+      display: flex;
+      justify-self: flex-start;
+      width: fit-content;
+      margin: 0 auto 0 auto;
+      font-size: .8vw;
+  }
+
 
 
   .section__itemCard {
