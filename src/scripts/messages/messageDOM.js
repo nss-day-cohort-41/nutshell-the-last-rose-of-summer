@@ -6,21 +6,21 @@ import shared from "../miscSharedFunctions.js"
 // import API from "../data.js"
 let messages;
 const messageDOM = {
-
+    //Iterates through the message array to find Active User, Friends of user, and strangers
     messageHTMLBuilder(messageArray)  {
         messages = messageArray
         messageDOM.clearMessageSection()
         let messageSectionHTML = ``
         let highestMsgID = 0;
         messageArray.forEach(message => {
-
             if (message.id > highestMsgID) { highestMsgID = message.id}
-            //build current user message//
+            //build Active user messages//
+
             if (message.userId == sessionStorage.activeUser) {
                let userHTML = messageDOM.buildCurrentUserMessage(message)
                messageSectionHTML += userHTML           
             }
-            //build current user's friends messages//
+            //build Active user's friend's messages//
             else if (message.friendOfUser === true ) {
                let friendHTML = messageDOM.buildCurrentUserFriendMessage(message)
                messageSectionHTML += friendHTML
@@ -34,14 +34,17 @@ const messageDOM = {
         )
         
         document.querySelector(".container__messages--saved").innerHTML = messageSectionHTML;
+
         document.querySelector(`.section__message__${highestMsgID}`).scrollIntoView(true)
         // listeners.enableEditButton(messageArray)
+
     },
+    //Section for providing the message HTML//
     //User message HTML//
     buildCurrentUserMessage(message) {
         let date = shared.dateConverter(message.date)
         return `<section class="section__itemCard section__message__${message.id}">
-                    <p class="header__itemCard">${message.userName} <button class="fas fa-user" id="buttonMsg--${message.id}">Edit</i></button></p>
+                    <p class="header__itemCard">${message.user.userName} <button class="fas fa-user" id="buttonMsg--${message.id}">Edit</i></button></p>
                     <p><strong>${message.message}</strong> </p>
                     <p><strong>${date}</strong> </p>
         </section>
@@ -51,8 +54,8 @@ const messageDOM = {
     //Friend message HTML//
     buildCurrentUserFriendMessage(message) {
         let date = shared.dateConverter(message.date)
-        return `<section class="section__itemCard">
-                    <p class="header__itemCard">${message.userName} <i class="fas fa-user-friends"></i></p>
+        return `<section class="section__itemCard section__message__${message.id}">
+                    <p class="header__itemCard">${message.user.userName} <i class="fas fa-user-friends"></i></p>
                     <p><strong>${message.message}</strong> </p>
                     <p><strong>${date}</strong> </p>
         </section>
@@ -61,8 +64,8 @@ const messageDOM = {
     //Stranger message HTML//
     buildStrangerMessage(message) {
         let date = shared.dateConverter(message.date)
-        return `<section class="section__itemCard">
-                    <p class="header__itemCard">${message.userName} <button class="fas fa-user-plus" id="buttonAddMsg--${message.userId}"></button></p>
+        return `<section class="section__itemCard section__message__${message.id}">
+                    <p class="header__itemCard">${message.user.userName} <button class="fas fa-user-plus" id="buttonAddMsg--${message.user.id}" value="${message.user.userName}"></button></p>
                     <p><strong>${message.message}</strong> </p>
                     <p><strong>${date}</strong> </p>
         </section>
@@ -71,7 +74,7 @@ const messageDOM = {
     clearMessageSection () {
         document.querySelector(".container__messages--saved").innerHTML = ``
     },
-    //Allow user to create a new public message//
+    //Builds the HTML for the fields to allow user to create a new public message//
     createNewMessageFields () {
         document.querySelector(".container__main__left--messages").innerHTML = `
         <section class="section__itemCard">
@@ -90,16 +93,16 @@ const messageDOM = {
     listeners.enableDiscardButton()
     listeners.enableMessageSave()
     },
-    //Allow user to edit own message. Builds pre-populated fieldset in entry area//
-    
+    //Allow user to edit own message. Builds pre-populated fieldset in entry area//   
     messageEdit() {
-       
+        //find the message to be edited//      
             let idSelected = event.target.id.split("--")[1]
             let editArray = messages.find(array => {
                 if (array.id == idSelected) {
                     return array
                 }
             })
+            //build the HTML to display the message in the entry field section//
             let date = shared.dateConverter(editArray.date)
             document.querySelector(".container__main__left--messages").innerHTML = `
             <section class="section__itemCard">
