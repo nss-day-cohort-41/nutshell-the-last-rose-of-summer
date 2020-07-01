@@ -8,8 +8,6 @@ import eventList from './events/eventList.js';
 import { updateAllScrolls } from './events.js';
 import listeners from "./eventListeners.js";
 
-// listeners.enableAddItemListener ()
-// listeners.enableEditButton()
 
 listeners.login()
 listeners.register()
@@ -54,11 +52,7 @@ listeners.enableEditButton()
 listeners.enableFriendDelete()
 
 
-// messaging.getAllMessages()
-// friends.getPrimaryUserAndFriends()
-// friends.getAllFriends()
-// pass divContainer, htmlpage or var, type ("file", or "variable")
-// updateForm()
+
 export { populateComponents };
 
 

@@ -36,9 +36,10 @@ const messageDOM = {
     },
     //User message HTML//
     buildCurrentUserMessage(message) {
+        console.log("user message", message)
         let date = shared.dateConverter(message.date)
         return `<section class="section__itemCard">
-                    <p class="header__itemCard">${message.userName} <button class="fas fa-user" id="buttonMsg--${message.id}">Edit</i></button></p>
+                    <p class="header__itemCard">${message.user.userName} <button class="fas fa-user" id="buttonMsg--${message.id}">Edit</i></button></p>
                     <p><strong>${message.message}</strong> </p>
                     <p><strong>${date}</strong> </p>
         </section>
@@ -49,7 +50,7 @@ const messageDOM = {
     buildCurrentUserFriendMessage(message) {
         let date = shared.dateConverter(message.date)
         return `<section class="section__itemCard">
-                    <p class="header__itemCard">${message.userName} <i class="fas fa-user-friends"></i></p>
+                    <p class="header__itemCard">${message.user.userName} <i class="fas fa-user-friends"></i></p>
                     <p><strong>${message.message}</strong> </p>
                     <p><strong>${date}</strong> </p>
         </section>
@@ -59,7 +60,7 @@ const messageDOM = {
     buildStrangerMessage(message) {
         let date = shared.dateConverter(message.date)
         return `<section class="section__itemCard">
-                    <p class="header__itemCard">${message.userName} <button class="fas fa-user-plus" id="buttonAddMsg--${message.userId}" value="${message.userName}"></button></p>
+                    <p class="header__itemCard">${message.user.userName} <button class="fas fa-user-plus" id="buttonAddMsg--${message.user.id}" value="${message.user.userName}"></button></p>
                     <p><strong>${message.message}</strong> </p>
                     <p><strong>${date}</strong> </p>
         </section>

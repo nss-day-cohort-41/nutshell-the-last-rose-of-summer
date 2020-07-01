@@ -15,6 +15,7 @@ const friends = {
     getPrimaryUserAndFriends() {
         API.getFriendData(sessionStorage.activeUser)
         .then((response) => {
+            // messaging.recieveFriends(response)
             friends.buildFriendsArray(response)
 
         })        
@@ -63,13 +64,12 @@ const friends = {
         let querry = document.querySelector("#userSearch").value
         document.querySelector("#foundUser").innerHTML = ``
         console.log(querry)
+        //waits for 3 letters to be entered before starting querry process//
         if (querry.length > 1) {
             API.searchForUser(querry)
             .then((result) => {
                 console.log(result)
-            // result.forEach(user => {
                 friends.filterArray(result)
-                // })        
             })     
         }
     },
@@ -106,11 +106,7 @@ const friends = {
             "userId": followingId,
             "date": new Date()
         }
-        // let followNameArray = userArray.find(user => {
-        //     if (followingId === user.id) {
-        //         return user
-        //     }
-        // })
+
         let addFriend = confirm(`Are you sure you wish to follow ${event.target.value}`)
         if (addFriend === true) {
             
@@ -120,51 +116,26 @@ const friends = {
                 
                 friends.getPrimaryUserAndFriends()
                 messaging.getAllMessages();
+                console.log(searchDisplayArray)
                 if (searchDisplayArray.length > 1) {
                   let newsearchDisplayArray = searchDisplayArray.filter(array =>{
-                        if (array.id !== followNameArray.id) {
+                        if (array.id !== friendObj.userId) {
                             return array
                         }
 
                     })
                     searchDisplayArray = newsearchDisplayArray
-                    // document.querySelector("#foundUser").innerHTML = ``
+                    document.querySelector("#foundUser").innerHTML = ``
                     friendsDOM.insertSearchResult(searchDisplayArray)
                 }
                 else shared.clearDataField()
             })
         }
-    }
+    },
+    // handOffFriendsArray() {
 
-
-    //Future funtionality//
-
-    // friendRequest() {
-    //     let idSelected = event.target.id.split("--")[1]
-    //     let requestTo = userArray.find(array => {
-    //         if (array.id == idSelected) {
-    //             return array
-    //         }
-    //     })
-    //     console.log(requestTo)
-    //     friendsDOM.buildRequestField(requestTo)
-    // },
-
-
-    
-    // buildRequestObject() {
-    //     let id = document.querySelector("#entryId").value
-    //     let requestUserId = document.querySelector("#userMessageId").value
-    //     requestUserId = parseInt(requestUserId)
-    //     let requestObject = {
-    //         "requestFromUserId": sessionStorage.activeUser,
-    //         "requestFromUserName": sessionStorage.activeUserName,
-    //         "requestToUserId": requestUserId,
-    //         "message": document.querySelector("#message__Field").value,
-    //         "date": new Date()
-    //     }
-    // }
-    
+    //     return friendsArray
+    // }  
 }
 
 export default friends

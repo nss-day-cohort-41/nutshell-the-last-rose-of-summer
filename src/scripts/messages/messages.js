@@ -4,39 +4,55 @@
 import API from "../data.js"
 import messageDOM from "./messageDOM.js"
 import shared from "../miscSharedFunctions.js"
+import friends from "../friends/friends.js"
 let messageArray = [];
-
+let friendsArray = []
+let primaryUser = []
 
 const messaging = {
 //Get all user data including messages and friends//
     getAllMessages () {
-        API.getAllUsersAndMessages()
+        // primaryUser = primary
+        API.getAllMessages()
         .then((response => {
+            let messages = response
+            API.getFriendData(sessionStorage.activeUser)
+            .then((friendResponse) => {
+                messaging.buildMessageArray(messages, friendResponse)
+            })
+            // friendsArray = friends.handOffFriendsArray()
             // console.log(response)
-            messaging.buildMessageArray(response)
+            
         }))
     },
+    // recieveFriends(friendsList) {
+    //     friendsArray.push(friendsList)
+    // },
 //Build the array of all messages//
-    buildMessageArray(allUserMessages) {
+    buildMessageArray(allUserMessages, friends) {
+        console.log(allUserMessages)
         messageArray = []
-        let activeUser = allUserMessages.find(array => {
-            return (array.userName === sessionStorage.activeUserName)
-        })
+        // let activeUser = allUserMessages.find(array => {
+        //     return (array.userName === sessionStorage.activeUserName)
+        // })
+        console.log(friends)
     //searches messages for all friends of Current User//
-        allUserMessages.forEach(user => {
+        allUserMessages.forEach(message => {
             let userFollowing = false
             
-            activeUser.friends.forEach(friend => {
-                if (friend.userId == user.id) {
+            friends.forEach(friend => {
+                // console.log("This is a friend", friend)
+                if (friend.userId == message.user.id) {
+                    // console.log("This is a friend", friend)
                     userFollowing = true
                 }
     //builds the message array, adding user name and friend status to the array//
             })
-                user.messages.forEach(message => {
-                message.userName = user.userName
+                // user.messages.forEach(message => {
+                // message.userName = user.userName
                 message.friendOfUser = userFollowing
                 messageArray.push(message)
-            })
+            // })
         });
     //Sort the array to show newest on the bottom of the list//
         messageArray.sort((a, b) => {return new Date(a.date) - new Date(b.date)})

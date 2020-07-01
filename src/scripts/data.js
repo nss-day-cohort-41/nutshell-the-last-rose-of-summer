@@ -29,9 +29,14 @@ const API = {
 
 //**All message field related FETCH calls**//   
     // get all messages //
-    getAllUsersAndMessages () {
+    // getAllUsersAndMessages () {
         
-        return fetch(`${jsonUrl}users?_embed=messages&_embed=friends`)
+    //     return fetch(`${jsonUrl}users?_embed=messages&_embed=friends`)
+    //         .then(response => response.json())
+    // },
+    getAllMessages() {
+        
+        return fetch(`${jsonUrl}messages?_expand=user`)
             .then(response => response.json())
     },
     // POST a new message//
