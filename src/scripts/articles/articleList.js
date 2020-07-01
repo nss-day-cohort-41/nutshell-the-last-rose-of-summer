@@ -29,7 +29,7 @@ const articleList = {
         activeUserObj = allUserArticles.find(user => user.id === activeUserId)
         activeUserObj.friends.forEach((friend => {
          
-            friendArray.push(friend.following)}))
+            friendArray.push(friend.activeUserId)}))
         
 
         //Find friends and set object key value
@@ -72,7 +72,7 @@ const articleList = {
                 renderArticles(article)
                 document.querySelector(`.article--${article.id}`).classList.remove("section__friend")
             }
-            // Add following friends articles and adjust class for italics and cornsilk background
+            // Add activeUserId friends articles and adjust class for italics and cornsilk background
             else if (article.friendOfUser === true ) {
                 renderArticles(article)
                 document.querySelector(`.article--${article.id}`).classList.toggle("section__friend")
