@@ -5,7 +5,7 @@ import articleList from './articles/articleList.js';
 import eventList from './events/eventList.js';
 import { updateAllScrolls, userWelcome } from './events.js';
 import listeners from "./eventListeners.js";
-import test from "./tasks/tasks.js"
+import taskItem from "./tasks/tasks.js"
 
 
 listeners.login()
@@ -17,6 +17,7 @@ const populateComponents = () => {
     messaging.getAllMessages();
     articleList.getAllArticles();
     eventList.getAllEvents();
+    taskItem.taskListGenerator()
     updateAllScrolls()
     
 }
@@ -65,4 +66,3 @@ listeners.deleteUserTask()
 listeners.isTaskComplete()
 
 
-test.daysRemaining()
