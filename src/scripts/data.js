@@ -115,8 +115,45 @@ const API = {
               }})
     },
 
+
+    // all task related fetch calls 
+    getAllUserTasks (userId) {
+        return fetch(`${jsonUrl}users/${userId}?_embed=tasks`)
+            .then(response => response.json())
+    },
+
+    saveNewTask (taskObj) {
+        return fetch(`${jsonUrl}tasks`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(taskObj)
+        }).then(response => response.json())
+    },
+    deleteTask (taskId) {
+        return fetch(`${jsonUrl}tasks/${taskId}`, {
+            method: "DELETE"
+        }).then(response => response.json())
+
+    },
+    getSingleTask (taskId) {
+        return fetch(`${jsonUrl}tasks/${taskId}`)
+            .then(response => response.json())
+    },
+    completeUserTask (completedTaskObj) {
+        return fetch(`${jsonUrl}tasks/${completedTaskObj.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(completedTaskObj)
+        }).then(response => response.json())
+    },
+
+
    //Event API Calls
-   addEventEntry(eventObject) {
+   addEventEntry (eventObject) {
     return fetch(`${jsonUrl}events`, {
         method: "POST",
         headers: {
