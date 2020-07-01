@@ -26,10 +26,12 @@ const populateComponents = () => {
     listeners.enableFriendDelete()
 
     messaging.getAllMessages();
-    friends.getAllFriends()
+    // friends.getAllFriends()
     articleList.getAllArticles();
     eventList.getAllEvents();
+    friends.getPrimaryUserAndFriends()
     updateAllScrolls()
+    
     
 }
 
@@ -50,8 +52,12 @@ if (activeUserId !== null) {
 const messageContainer = document.querySelector(".container__messages--saved")
 
 
-// pass divContainer, htmlpage or var, type ("file", or "variable")
-// updateForm()
+// listeners.enableAddItemListener ()
+// listeners.enableEditButton()
+// listeners.enableFriendDelete()
+
+
+
 export { populateComponents };
 
 //task delete and complete listeners

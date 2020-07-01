@@ -3,19 +3,21 @@ This module's purpose is to build the DOM elements for the friends section of Nu
 import miscSharedFunctions from "../miscSharedFunctions.js"
 import listeners from "../eventListeners.js"
 
-// let friendsListHTML = ``
 
 const friendsDOM = {
-
+    //Assembles to HTML for the Friends list//
     buildFriendList(friendsArray) {
         let friendsListHTML = ``
         document.querySelector(".container__main__middle--friends").innerHTML = ``
+        //Iterates through the friends array, sending each array to the DOM builder//
         friendsArray.forEach(friend => {
            let thisFriendHTML = friendElementHTML(friend)
            friendsListHTML += thisFriendHTML           
         });
+        //Places the HTML in the DOM//
         document.querySelector(".container__main__middle--friends").innerHTML = friendsListHTML
     },
+    //Builds the HTML for the 'search users for new friend opportunities' fields// 
     buildSearchFields() {
         document.querySelector(".container__main__left--messages").innerHTML = `
             <section class="section__itemCard">
@@ -34,45 +36,21 @@ const friendsDOM = {
             listeners.enableDiscardButton()
             listeners.enableFriendSearch()
     },
+    //Builds the HTML for search results and inserts them into the DOM below the search field//
     insertSearchResult(searchDisplayArray) {
         let searchFoundHTML = ``
         document.querySelector("#foundUser").innerHTML = ``
         searchDisplayArray.forEach(toDisplay => {
             let displayHTML = `
-            <p class="header__itemCard">${toDisplay.userName} <button class="fas fa-user-plus" id="buttonAddMsg--${toDisplay.id}"></button></p>
+            <p class="header__itemCard">${toDisplay.userName} <button class="fas fa-user-plus" id="buttonAddMsg--${toDisplay.id}" value="${toDisplay.userName}"></button></p>
             `
             searchFoundHTML += displayHTML
         })
         document.querySelector("#foundUser").innerHTML = searchFoundHTML
     }
-    //***for future functionality*** Friend Request*/
-//     buildRequestField(requestTo) {
-      
-            
-
-//             document.querySelector(".container__main__left--messages").innerHTML = `
-//             <section class="section__itemCard">
-//             <input type="hidden" id="possibleFriend" value="${requestTo.id}"/>
-//             <input type="hidden" id="userId" value="${sessionStorage.activeUser}"/>
-//             <p class="header__itemCard">${sessionStorage.activeUserName}</p>
-//             <fieldset class="entry-point">
-//                 <label for="message">Message to ${requestTo.userName}</label>
-//                 <textarea class="field" id="message__Field" name="message" rows="6" cols="30"></textarea>  
-//             </fieldset>
-//             <div id="save_discard">
-//                 <input type="button" value="Send request" id="requestButton"></input>
-//                 <input type="button" value="Discard Changes" id="discardButton"></input>
-//             </div>
-// </section>`
-
-//             listeners.enableDiscardButton()
-//             listeners.enableSendFriendRequest()
-        
-    
-//     }
 
 }
-
+    //Provides the HTML for the Build Friend list function
 const friendElementHTML = (friend) => {
     let date = miscSharedFunctions.dateConverter(friend.friendsSince)
     let elementHTML = `
@@ -86,6 +64,3 @@ const friendElementHTML = (friend) => {
 }
 export default friendsDOM
 
-
-/* <p class="header__itemCard">${message.userName} <button class="fas fa-user-plus" id="buttonAddMsg--${message.userId}"></button></p>
-                    <p><strong>${message.message}</strong> </p> */

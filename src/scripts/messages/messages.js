@@ -5,38 +5,37 @@ import API from "../data.js"
 import messageDOM from "./messageDOM.js"
 import shared from "../miscSharedFunctions.js"
 let messageArray = [];
-
+let friendsArray = []
+let primaryUser = []
 
 const messaging = {
 //Get all user data including messages and friends//
     getAllMessages () {
-        API.getAllUsersAndMessages()
+        API.getAllMessages()
         .then((response => {
-            // console.log(response)
-            messaging.buildMessageArray(response)
+            let messages = response
+            //Gets user friend data and stores it for use//
+            API.getFriendData(sessionStorage.activeUser)
+            .then((friendResponse) => {
+                messaging.buildMessageArray(messages, friendResponse)
+            }) 
         }))
     },
-//Build the array of all messages//
-    buildMessageArray(allUserMessages) {
+    //Build the array of all messages//
+    buildMessageArray(allUserMessages, friends) {
         messageArray = []
-        let activeUser = allUserMessages.find(array => {
-            return (array.userName === sessionStorage.activeUserName)
-        })
-    //searches messages for all friends of Current User//
-        allUserMessages.forEach(user => {
-            let userFollowing = false
-            
-            activeUser.friends.forEach(friend => {
-                if (friend.following == user.id) {
+
+    //searches messages for all friends of Active User//
+        allUserMessages.forEach(message => {
+            let userFollowing = false           
+            friends.forEach(friend => {
+                if (friend.userId == message.user.id) {
                     userFollowing = true
                 }
     //builds the message array, adding user name and friend status to the array//
             })
-                user.messages.forEach(message => {
-                message.userName = user.userName
                 message.friendOfUser = userFollowing
                 messageArray.push(message)
-            })
         });
     //Sort the array to show newest on the bottom of the list//
         messageArray.sort((a, b) => {return new Date(a.date) - new Date(b.date)})
@@ -53,6 +52,7 @@ const messaging = {
             "message": document.querySelector("#message__Field").value,
             "date": new Date()
         }
+        //POSTs a new message to JSON
         if (document.querySelector("#entryId").value === "") {
             API.PostNewMessage(messageObject)
             .then(() => {
@@ -61,6 +61,7 @@ const messaging = {
                 document.querySelector(".select__box").value = 0
             })
         }
+        //PUT, updates an existing message in JSON
         else if (document.querySelector("#entryId").value !== "") {
             API.editExistingMessage (messageObject, id)
             .then(() => {
@@ -75,36 +76,5 @@ const messaging = {
 
     }
 }
-
-
-
-    // userMessageAquire (userId) {
-    //    API.getUserMessages(userId)
-    //     .then((userData => {
-    //         // console.log(`This is user #${userId} data`, userData)
-    //     messaging.buildMessages(userData)  
-    //     }))
-
-    // },
-    // buildMessages (userData) {
-    //     userData.messages.userName = userData.userName
-    //     userMessageArray.push(userData.messages)
-    //     let friends = userData.friends
-    //     // console.log(`These are the user messages`, userMessageArray)
-    //     // console.log(`These are the user friends`, friends)
-    //     friends.forEach(friend => {
-    //         API.getFriendMessages (friend.following)
-    //         .then((userObj => {   
-    //             userObj.messages.userName = userObj.userName
-    //             friendMessage = userObj.messages
-    //             // console.log("These are a users messages", friendMessage)
-    //             userMessageArray.push(friendMessage)
-    //             console.log("These are all the messages", userMessageArray)
-    //         }))
-    //     });
-    //     messageDOM.messageHTMLBuilder (userMessageArray)
-    // },
- 
-
 
 export default messaging
