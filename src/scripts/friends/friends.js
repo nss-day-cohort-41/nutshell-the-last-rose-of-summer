@@ -5,7 +5,26 @@ import API from "../data.js"
 import friendsDOM from "./friendsDOM.js"
 import messaging from "../messages/messages.js"
 import shared from "../miscSharedFunctions.js"
-import { populateComponents } from "../main.js"
+import listeners from "../eventListeners.js";
+import articleList from '../articles/articleList.js';
+import eventList from '../events/eventList.js';
+import { updateAllScrolls, userWelcome } from '../events.js';
+
+
+
+const populateComponentsFriends = () => {
+    document.querySelector("#button__footer__logout").classList.toggle("hidden");
+    
+    userWelcome();
+    
+    listeners.generateUserTasks()
+    
+    articleList.getAllArticles();
+    eventList.getAllEvents();
+    updateAllScrolls()
+    
+    
+}
 
 let friendsArray = []
 let userArray = []
@@ -50,7 +69,7 @@ const friends = {
                 document.querySelector(".container__main__middle--friends").innerHTML = ``
                 friends.getPrimaryUserAndFriends()
                 messaging.getAllMessages()
-                populateComponents();
+                populateComponentsFriends();
 
             })
         }
@@ -114,7 +133,7 @@ const friends = {
                 
                 friends.getPrimaryUserAndFriends()
                 messaging.getAllMessages();
-                populateComponents();
+                populateComponentsFriends();
 
                 //Check to see if there are addional search results before clearing the fields//
                 if (searchDisplayArray.length > 1) {
