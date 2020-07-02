@@ -8,7 +8,6 @@ import listeners from './../eventListeners.js';
 const eventSection = document.querySelector(".container__main__right--events");
 let eventArray = [];
 let nextEvent = {};
-let activeUserObj = {};
 let activeUserId = "";
 
 const eventList = {
@@ -16,21 +15,32 @@ const eventList = {
     //Get users, friends, and events and build array
     getAllEvents () {
         eventSection.innerHTML="";
+        activeUserId = parseInt(sessionStorage.getItem("activeUser"));
         API.getAllUsersAndEvents()
         .then((response => {
-            eventList.buildEventArray(response)
+            let events = response;
+            //Gets user friend data and stores it for use//
+            API.getFriendData(activeUserId)
+            .then((friendResponse) => {
+                
+                eventList.buildEventArray(events, friendResponse)
+            }) 
         }))
     },
     //Build event array
-    buildEventArray(allUserEvents) {
+    buildEventArray(allUserEvents, friends) {
+        
         eventArray = []
         activeUserId = parseInt(sessionStorage.getItem("activeUser"))
-        activeUserObj = API.getSingleUser(activeUserId);
+     
     //Find friends and set object key value
+        
+        //Find friends and set object key value
         allUserEvents.forEach(user => {
             let friendOfUser = false
-            user.friends.forEach(friend => {
-                if (friend.following === activeUserId) {
+            friends.forEach(friend => {
+                if (friend.userId === user.id) {
+                    console.log(`User - Friend ${activeUserId} - ${user.id}`)
                     friendOfUser = true
                 }
     // Builds event array with users and friends
@@ -38,10 +48,13 @@ const eventList = {
             user.events.forEach(event => {
                 event.userName = user.userName
                 event.friendOfUser = friendOfUser
+
                 if ( event.friendOfUser === true || event.userId === activeUserId) {
                     eventArray.push(event)
                 }
+                
             })
+
         });
     
     // Sorts for newest event to go to top of list
@@ -76,7 +89,7 @@ const eventList = {
                 renderEvents(event)
                 document.querySelector(`.event--${event.id}`).classList.remove("section__friend")
             }
-            // Add following friends events and adjust class for italics and cornsilk background
+            // Add activeUserId friends events and adjust class for italics and cornsilk background
             else if (event.friendOfUser === true ) {
                 renderEvents(event)
                 document.querySelector(`.event--${event.id}`).classList.toggle("section__friend")
