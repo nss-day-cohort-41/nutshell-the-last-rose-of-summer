@@ -8,7 +8,6 @@ import listeners from './../eventListeners.js';
 const eventSection = document.querySelector(".container__main__right--events");
 let eventArray = [];
 let nextEvent = {};
-let activeUserObj = {};
 let activeUserId = "";
 
 const eventList = {
@@ -16,26 +15,32 @@ const eventList = {
     //Get users, friends, and events and build array
     getAllEvents () {
         eventSection.innerHTML="";
+        activeUserId = parseInt(sessionStorage.getItem("activeUser"));
         API.getAllUsersAndEvents()
         .then((response => {
-            eventList.buildEventArray(response)
+            let events = response;
+            //Gets user friend data and stores it for use//
+            API.getFriendData(activeUserId)
+            .then((friendResponse) => {
+                
+                eventList.buildEventArray(events, friendResponse)
+            }) 
         }))
     },
     //Build event array
-    buildEventArray(allUserEvents) {
+    buildEventArray(allUserEvents, friends) {
+        
         eventArray = []
         activeUserId = parseInt(sessionStorage.getItem("activeUser"))
-        let friendArray = []
-        
-        activeUserObj = allUserEvents.find(user => user.id === activeUserId)
-        activeUserObj.friends.forEach((friend => {
-            friendArray.push(friend.activeUserId)}))
-
+     
     //Find friends and set object key value
+        
+        //Find friends and set object key value
         allUserEvents.forEach(user => {
             let friendOfUser = false
-            user.friends.forEach(friend => {
-         if (friendArray.includes(friend.userId)) {
+            friends.forEach(friend => {
+                if (friend.userId === user.id) {
+                    console.log(`User - Friend ${activeUserId} - ${user.id}`)
                     friendOfUser = true
                 }
     // Builds event array with users and friends
@@ -43,10 +48,13 @@ const eventList = {
             user.events.forEach(event => {
                 event.userName = user.userName
                 event.friendOfUser = friendOfUser
+
                 if ( event.friendOfUser === true || event.userId === activeUserId) {
                     eventArray.push(event)
                 }
+                
             })
+
         });
     
     // Sorts for newest event to go to top of list

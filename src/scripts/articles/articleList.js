@@ -7,7 +7,6 @@ import listeners from './../eventListeners.js';
 
 const articleSection = document.querySelector(".container__main__middle--news");
 let articleArray = [];
-let activeUserObj = {};
 let activeUserId = "";
 
 const articleList = {
@@ -15,28 +14,27 @@ const articleList = {
     //Get users, friends, and articles and build array
     getAllArticles () {
         articleSection.innerHTML="";
+        activeUserId = parseInt(sessionStorage.getItem("activeUser"));
         API.getAllUsersAndArticles()
         .then((response => {
-            articleList.buildArticleArray(response);
+            let articles = response;
+            //Gets user friend data and stores it for use//
+            API.getFriendData(activeUserId)
+            .then((friendResponse) => {
+                articleList.buildArticleArray(articles, friendResponse)
+            }) 
         }))
     },
     //Build article array
-    buildArticleArray(allUserArticles) {
+    buildArticleArray(allUserArticles, friends) {
         articleArray = []
         activeUserId = parseInt(sessionStorage.getItem("activeUser"))
-        let friendArray = []
-
-        activeUserObj = allUserArticles.find(user => user.id === activeUserId)
-        activeUserObj.friends.forEach((friend => {
-         
-            friendArray.push(friend.activeUserId)}))
-        
 
         //Find friends and set object key value
         allUserArticles.forEach(user => {
             let friendOfUser = false
-            user.friends.forEach(friend => {
-                if (friendArray.includes(friend.userId)) {
+            friends.forEach(friend => {
+                if (friend.userId === user.id) {
                     friendOfUser = true
                 }
     // Builds article array with users and friends
@@ -66,7 +64,6 @@ const articleList = {
         articleSection.innerHTML = ""  
         articleArray.forEach(article => {
 
-            
             // Add active user article and adjust class for no italics
             if (article.userId === activeUserId) {
                 renderArticles(article)
@@ -76,6 +73,7 @@ const articleList = {
             else if (article.friendOfUser === true ) {
                 renderArticles(article)
                 document.querySelector(`.article--${article.id}`).classList.toggle("section__friend")
+                document.querySelector(`#button__article__delete--${article.id}`).classList.toggle("hidden")
             }                
             listeners.enableArticleDeleteButton();
         })
