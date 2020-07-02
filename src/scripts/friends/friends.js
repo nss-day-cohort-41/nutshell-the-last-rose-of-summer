@@ -5,6 +5,7 @@ import API from "../data.js"
 import friendsDOM from "./friendsDOM.js"
 import messaging from "../messages/messages.js"
 import shared from "../miscSharedFunctions.js"
+import { populateComponents } from "../main.js"
 
 let friendsArray = []
 let userArray = []
@@ -49,6 +50,8 @@ const friends = {
                 document.querySelector(".container__main__middle--friends").innerHTML = ``
                 friends.getPrimaryUserAndFriends()
                 messaging.getAllMessages()
+                populateComponents();
+
             })
         }
     },
@@ -111,6 +114,8 @@ const friends = {
                 
                 friends.getPrimaryUserAndFriends()
                 messaging.getAllMessages();
+                populateComponents();
+
                 //Check to see if there are addional search results before clearing the fields//
                 if (searchDisplayArray.length > 1) {
                   let newsearchDisplayArray = searchDisplayArray.filter(array =>{
