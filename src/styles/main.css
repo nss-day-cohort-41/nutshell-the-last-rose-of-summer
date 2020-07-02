@@ -1,23 +1,16 @@
+/* main.css for Nutshell
+   David Bruce */
+
 html, body {
     height: 98%;
     width: auto;
     margin: 0;
     padding: 0;
     font-family: 'Cuprum', Arial, Helvetica, sans-serif;
-    /* background-color: #BC986A; */
   }
-/* 
-  green #8D8741
-  blue #659DBD
-  beige #DAAD86
-  dark beige #BC986A
-  toupe #FBEEC1 */
 
-  /*
-  beach blue #049DD9
-  lighter blue #04B2D9
-  */
 
+/* Header Section */
 .header {
 position:relative;
   overflow:hidden;
@@ -67,6 +60,8 @@ position:relative;
   color:#eee
 }
 
+
+/* Login/Registration Screen */
 .container__form__login {
     display: flex;
     color: #e6e3d9;
@@ -159,6 +154,7 @@ position:relative;
   }
 
   
+/* Body Main Container */
 .container__main {
     display: flex;
     color: dimgrey;
@@ -183,6 +179,7 @@ position:relative;
     margin: 1vh 1vw;
 }
 
+/* main background image */
 img {
     position: absolute;
     width: 99%;
@@ -197,6 +194,7 @@ img::after {
 }
 
 
+/* News and Friends Middle Area */
 .container__main__middle {
     display: flex;
     flex-direction: column;
@@ -219,6 +217,8 @@ img::after {
     box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
 }
 
+
+/* Left and Rigtht Containers for Messages, Events, and Tasks */
 .container__main__left, .container__main__right {
     flex: 2.5 0 0;
     display: flex;
@@ -242,6 +242,7 @@ img::after {
     margin: 1vh 1vw;
 }
 
+/* Component Header Formatting */
 .messages__header, .news__header, .friends__header, .events__header, 
 .news__header, .tasks__header {
     height: 1.1em;
@@ -251,6 +252,7 @@ img::after {
     
 }
 
+/* Form Container for Adding/Editing Component Items */
 .container__main__left--messages {
     flex: 2 0 0;
     margin: 5px 3px 5px 3px;
@@ -263,6 +265,7 @@ img::after {
     box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
 }
 
+
 .div__welcome {
     display: flex;
     justify-content: flex-start;
@@ -274,6 +277,8 @@ img::after {
     justify-content: flex-start;
 }
 
+
+/* Message List Area */
 .container__messages--saved {
     flex: 6 0 0;
     margin: 5px 3px 5px 3px;
@@ -291,6 +296,7 @@ img::after {
 }
 
 
+/* Scroll bar formatting for all component areas */
 .scrollDiv::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	background-color: #F5F5F5;
@@ -314,7 +320,7 @@ img::after {
 									   color-stop(.6,#d68066))
 }
 
-
+/* News List Area */
 .container__main__middle--news {
     flex: 7 0 0;
     color: rgb(53, 93, 131);
@@ -332,6 +338,7 @@ img::after {
 
 }
 
+/* Friends List Area */
 .container__main__middle--friends {
     display: grid;
     grid-template-columns: 33% 33% 33%;
@@ -356,6 +363,7 @@ img::after {
 
 }
 
+/* Events and Tasks List Areas */
 .container__main__right--events, .container__main__right--tasks {
     flex: 4 0 0;
     margin: 5px 3px 5px 3px;
@@ -372,6 +380,7 @@ img::after {
 
 }
 
+/* Controls formatting */
 input, select, button {
     background-color: #FBEEC1;
     border-radius: 5px;
@@ -389,6 +398,7 @@ input, select, button {
 
 }
 
+/* Footer Formatting */
 .container__footer {
     display: flex;
     color: dimgrey;
@@ -443,7 +453,7 @@ input, select, button {
   }
 
 
-
+/* All Sections Shared Items CSS Formatting */
   .section__itemCard {
     flex: 1 0 21%;
     flex-basis: 21%;
@@ -477,6 +487,7 @@ input, select, button {
     margin: 0 2px;
    }
 
+   /* Class for next occurring event */
    .section__nextEvent {
         flex: 1 0 21%;
         flex-basis: 21%;
@@ -498,19 +509,19 @@ input, select, button {
     margin: 0 2px;
    }
 
+/* Class for hiding  (duh) */
   .hidden {
       display: none;
 }
 
 
-/* message edit field buttons*/
-
+/* Class for Save Discard ID Elements */
 #save_discard {
     display: flex;
     justify-content: space-evenly;
 }
 
-
+/* Class for formatting friend item cards */
 .section__friend {
     font-style: italic;
     background-color: cornsilk;
