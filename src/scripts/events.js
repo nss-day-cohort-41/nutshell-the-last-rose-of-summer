@@ -14,7 +14,7 @@ const userWelcome = () => {
     const activeUserId = parseInt(sessionStorage.getItem("activeUser"))
     API.getSingleUser(activeUserId)
       .then((activeUserObject => {
-        formContainer.innerHTML += `
+        formContainer.innerHTML = `
         <div class="div__welcome">
             <div class="div__welcome__inner">
                 <h4>Welcome, ${activeUserObject.userName}</h4>
