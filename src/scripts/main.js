@@ -16,17 +16,16 @@ listeners.register()
 
 // Function for refreshing and populating all list components
 const populateComponents = () => {
-    document.querySelector("#button__footer__logout").classList.toggle("hidden");
+    document.querySelector("#button__footer__logout").classList=("button__footer__logout");
     
     userWelcome();
-    
-    listeners.enableAddItemListener ()
-    listeners.generateUserTasks()
-    listeners.enableEditButton()
-    listeners.enableFriendDelete()
+    document.querySelector(".select__box").value = 0
+    // listeners.enableAddItemListener ()
+    // listeners.generateUserTasks()
+    // listeners.enableEditButton()
+    // listeners.enableFriendDelete()
 
     messaging.getAllMessages();
-    // friends.getAllFriends()
     articleList.getAllArticles();
     eventList.getAllEvents();
     friends.getPrimaryUserAndFriends()
@@ -64,5 +63,8 @@ export { populateComponents };
 listeners.deleteUserTask()
 listeners.isTaskComplete()
 listeners.editTaskListener()
-
+listeners.enableAddItemListener ()
+listeners.generateUserTasks()
+listeners.enableEditButton()
+listeners.enableFriendDelete()
 

@@ -48,8 +48,8 @@ const friends = {
             API.unfollow(id)
             .then(() => {
                 document.querySelector(".container__main__middle--friends").innerHTML = ``
-                friends.getPrimaryUserAndFriends()
-                messaging.getAllMessages()
+                // friends.getPrimaryUserAndFriends()
+                // messaging.getAllMessages()
                 populateComponents();
 
             })
@@ -112,8 +112,8 @@ const friends = {
             .then(() => {
                 document.querySelector(".container__main__middle--friends").innerHTML = ``
                 
-                friends.getPrimaryUserAndFriends()
-                messaging.getAllMessages();
+                // friends.getPrimaryUserAndFriends()
+                // messaging.getAllMessages();
                 populateComponents();
 
                 //Check to see if there are addional search results before clearing the fields//
