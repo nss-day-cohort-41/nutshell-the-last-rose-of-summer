@@ -19,14 +19,13 @@ const populateComponents = () => {
     document.querySelector("#button__footer__logout").classList=("button__footer__logout");
     
     userWelcome();
-    
+    document.querySelector(".select__box").value = 0
     // listeners.enableAddItemListener ()
     // listeners.generateUserTasks()
     // listeners.enableEditButton()
     // listeners.enableFriendDelete()
 
     messaging.getAllMessages();
-    // friends.getAllFriends()
     articleList.getAllArticles();
     eventList.getAllEvents();
     friends.getPrimaryUserAndFriends()
